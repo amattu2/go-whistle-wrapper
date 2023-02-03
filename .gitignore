@@ -6,6 +6,7 @@ vendor/
 # Specific Files
 thunderEnvironment.json
 thunderActivity.json
+example.go
 
 # File Types
 *.ini

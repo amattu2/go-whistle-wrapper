@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "colName": "Whistle",
+    "created": "2023-02-03T22:15:43.482Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "e68ef0e7-7fd7-41a7-a2b4-617a0924d5b5",
+        "name": "Authentication",
+        "containerId": "",
+        "created": "2023-02-03T22:17:53.436Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+        "name": "Pets",
+        "containerId": "",
+        "created": "2023-02-03T22:24:24.402Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+        "name": "Users",
+        "containerId": "",
+        "created": "2023-02-03T22:33:13.977Z",
+        "sortNum": 15000
+      },
+      {
+        "_id": "c6827c12-1407-448c-9774-7406b3aa712e",
+        "name": "Devices",
+        "containerId": "",
+        "created": "2023-02-03T22:39:24.323Z",
+        "sortNum": 40000
+      }
+    ]
+  }
+]

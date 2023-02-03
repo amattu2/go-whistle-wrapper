@@ -1,0 +1,203 @@
+[
+  {
+    "_id": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "e68ef0e7-7fd7-41a7-a2b4-617a0924d5b5",
+    "name": "Login",
+    "url": "https://app.whistle.com/api/login",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-02-03T22:18:02.014Z",
+    "modified": "2023-02-03T22:42:18.633Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "{{email}}"
+        },
+        {
+          "name": "password",
+          "value": "{{password}}"
+        }
+      ]
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.auth_token",
+        "action": "setto",
+        "value": "{{bearer}}"
+      }
+    ]
+  },
+  {
+    "_id": "8491bc2f-9baa-46da-b6c3-59828acdc63b",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "e68ef0e7-7fd7-41a7-a2b4-617a0924d5b5",
+    "name": "Tokens",
+    "url": "https://app.whistle.com/api/tokens.json",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-02-03T22:20:24.581Z",
+    "modified": "2023-02-03T22:23:18.704Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "cab4d14f-8a37-49cc-b6ae-274d7ff86326",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pets",
+    "url": "https://app.whistle.com/api/pets",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-03T22:24:34.434Z",
+    "modified": "2023-02-03T22:42:54.465Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "0c9ba118-df69-41b8-888c-cbb02390bce4",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Users",
+    "url": "https://app.whistle.com/api/users",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-02-03T22:33:02.993Z",
+    "modified": "2023-02-03T22:43:24.145Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "600d755a-a88d-4493-96c7-d92ef700fd8e",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Notifications",
+    "url": "https://app.whistle.com/api/notifications",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-03T22:38:44.140Z",
+    "modified": "2023-02-03T22:43:08.492Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "dc5dcf6d-9204-4a3f-8dc6-5f4b2ccc132b",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Device",
+    "url": "https://app.whistle.com/api/devices/{deviceId}",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-02-03T22:39:27.697Z",
+    "modified": "2023-02-03T22:40:39.998Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  }
+]
