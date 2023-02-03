@@ -1,0 +1,13 @@
+# Folders
+__pycache__/
+node_modules/
+vendor/
+
+# Specific Files
+thunderEnvironment.json
+thunderActivity.json
+
+# File Types
+*.ini
+*.gch
+*.exe
