@@ -32,7 +32,42 @@
         "containerId": "",
         "created": "2023-02-03T22:39:24.323Z",
         "sortNum": 40000
+      },
+      {
+        "_id": "2ea00657-aacd-44a7-bb8e-0f8b091668f2",
+        "name": "Adventures/Places",
+        "containerId": "",
+        "created": "2023-02-04T01:56:32.755Z",
+        "sortNum": 50000
+      },
+      {
+        "_id": "76fc95b8-5f4e-462c-a464-f573fefe4384",
+        "name": "Subscriptions",
+        "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+        "created": "2023-02-04T01:58:38.108Z",
+        "sortNum": 60000
+      },
+      {
+        "_id": "2ed3bcc7-82c8-46ae-9ddb-28bdbbb2652f",
+        "name": "Breeds",
+        "containerId": "",
+        "created": "2023-02-04T02:00:39.151Z",
+        "sortNum": 70000
+      },
+      {
+        "_id": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+        "name": "Misc",
+        "containerId": "",
+        "created": "2023-02-04T02:02:15.831Z",
+        "sortNum": 80000
       }
-    ]
+    ],
+    "settings": {
+      "runOptions": {
+        "delay": 100,
+        "iterations": 1,
+        "dataFilePath": ""
+      }
+    }
   }
 ]

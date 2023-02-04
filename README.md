@@ -90,6 +90,9 @@ The wrapper exposes two ways of instantiating a client.
 
 ## Methods
 
+**Important note**: The Whistle.com API REQUIRES a `Accept: application/vnd.whistle.com.v4+json`
+to be present in ALL REQUESTS otherwise it will return 404.
+
 <details>
   <summary>Users</summary>
 
@@ -176,73 +179,9 @@ These are the remaining action items of this project.
 Some of them are on hold until I have a device to test with.
 
 - [X] Switch to Bearer usage
+- [ ] Implement all of the newly discovered endpoints (see Thunder Client)
 - [ ] Test cases
 - [ ] Handle API key expiration or renewal
 - [ ] Finish README.md usage docs
 - [ ] Fill in missing struct definitions
-- [ ] Figure out what `highlightType` options are available
 - [ ] Add support for the async event pusher service (See "realtime_channel")
-
-<details>
-  <summary>Confirm all of these are implemented</summary>
-
-  Some of these may not actually work, all of them are `GET` requests
-
-  ```java
-  devices/{serial_number}
-  devices/{serial_number}/activation
-  devices/{serial_number}/plans
-  devices/{serial_number}/subscription
-  devices/{serial_number}/subscription/previews/{plan_id}
-  devices/{old_device_serial_number}/upgrade/preview
-  devices/{serial_number}/wifi_networks
-  users/me
-  users/emails/{email}
-  users/invitation_codes/{invitation_code}
-  users/application_state
-  users/referral_code
-  users/subscriptions
-  pets/{pet_id}/owners
-  pets/{id}
-  pets/{id}/whereabouts
-  pets/{pet_id}/achievements
-  pets/{id}/dailies/{dayNumber}/daily_items
-  pets/{pet_id}/task_occurrences?q=complete
-  pets/{id}/dailies
-  pets/{pet_id}/health/trends
-  pets/{pet_id}/health/graphs/eating_events
-  pets/{pet_id}/health/graphs/sleeping
-  pets/{pet_id}/health/graphs/{trend_type}
-  pets/{pet_id}/task_occurrences?q=incomplete
-  pets/{id}/dailies/{dayNumber}
-  pets/{pet_id}/nutrition/v2/suggested_portions
-  pets/{pet_id}/task_occurrences?q=overdue
-  pets/{pet_id}/pet_food_portions
-  pets/{id}/locations/recent_trackings
-  pets/{pet_id}/tasks/{task_id}
-  pets/{id}/stats
-  pets/transfers
-  pets/{pet_id}/task_occurrences?q=upcoming
-  pets/{id}/whereabouts
-  adventures/categories
-  adventures/poi
-  adventures/poi/{poi_id}
-  partners/banfield/pets/{client_id}
-  subscriptions/{subscription_id}/cancellation/preview
-  subscriptions/{subscription_id}/cancellation/reasons
-  breeds/cats
-  breeds/dogs
-  pet_foods?type=dog_food
-  health_conditions/dogs
-  pet_foods?type=dog_treat
-  /api/users/me/firmware_updates
-  coupons/{coupon_id}
-  partners/{partner_id}/account
-  performance_settings
-  pets
-  places
-  partners/vca/devices/{serial_number}
-  reverse_geocode
-  ```
-
-</details>

@@ -76,11 +76,11 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-02-03T22:24:34.434Z",
-    "modified": "2023-02-03T22:42:54.465Z",
+    "modified": "2023-02-04T01:16:29.657Z",
     "headers": [
       {
         "name": "Accept",
-        "value": "application/json"
+        "value": "application/vnd.whistle.com.v4+json "
       }
     ],
     "params": [],
@@ -175,17 +175,1517 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-02-03T22:39:27.697Z",
-    "modified": "2023-02-03T22:40:39.998Z",
+    "modified": "2023-02-04T01:20:02.866Z",
     "headers": [
       {
         "name": "Accept",
-        "value": "application/json"
+        "value": "application/vnd.whistle.com.v4+json"
       }
     ],
     "params": [
       {
         "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "ef840ed9-32e2-4386-9eee-8cae2a226dbf",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Me",
+    "url": "https://app.whistle.com/api/users/me",
+    "method": "GET",
+    "sortNum": 15000,
+    "created": "2023-02-04T01:10:07.344Z",
+    "modified": "2023-02-04T01:16:12.065Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "49681bad-a43f-406b-ae47-b36e002d6e5a",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Emails",
+    "url": "https://app.whistle.com/api/users/emails/{email}",
+    "method": "GET",
+    "sortNum": 17500,
+    "created": "2023-02-04T01:20:59.414Z",
+    "modified": "2023-02-04T01:22:13.457Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "email",
+        "value": "abc123",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "e42f790f-beb7-4fc5-af56-382210eb2c56",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Activation",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/activation",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-04T01:24:03.793Z",
+    "modified": "2023-02-04T01:24:27.019Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "f63aaecd-650c-446c-a182-d827da95d883",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Plans",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/plans",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-02-04T01:24:05.509Z",
+    "modified": "2023-02-04T01:24:48.738Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "66c1a0a2-6a6c-43a7-992a-49d644234ee3",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Subscription",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/subscription",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-02-04T01:24:07.216Z",
+    "modified": "2023-02-04T01:25:02.058Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "40399d1b-251d-4950-9fa0-bedc34031f85",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Subscription Previews",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/subscription/previews/{planId}",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-02-04T01:24:08.846Z",
+    "modified": "2023-02-04T01:26:15.482Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      },
+      {
+        "name": "planId",
         "value": "",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "8931c88f-afde-4a37-9d6f-38bc7fb6c908",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Wifi Networks",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/wifi_networks",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-02-04T01:26:31.450Z",
+    "modified": "2023-02-04T01:26:57.634Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "ac5cdc9e-ea4c-4072-acd2-64b982a22ea9",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Upgrade Preview",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/upgrade/preview",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2023-02-04T01:26:58.643Z",
+    "modified": "2023-02-04T01:27:35.066Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "bfe36aa6-9732-4518-968f-fc7a54f8d49a",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Application_State",
+    "url": "https://app.whistle.com/api/users/application_state",
+    "method": "GET",
+    "sortNum": 18750,
+    "created": "2023-02-04T01:29:05.440Z",
+    "modified": "2023-02-04T01:29:25.993Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "a25f347b-cabb-4f2b-bc59-12d44539314c",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Referral_Code",
+    "url": "https://app.whistle.com/api/users/referral_code",
+    "method": "GET",
+    "sortNum": 19375,
+    "created": "2023-02-04T01:29:39.695Z",
+    "modified": "2023-02-04T01:29:51.914Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "adc5c540-94d1-47e8-9a01-a22662d1c562",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "76fc95b8-5f4e-462c-a464-f573fefe4384",
+    "name": "Subscriptions",
+    "url": "https://app.whistle.com/api/users/subscriptions",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-02-04T01:30:17.470Z",
+    "modified": "2023-02-04T01:58:40.497Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "51cfc5ef-7a09-4f7d-b354-0c38e2207159",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Invitation_Codes",
+    "url": "https://app.whistle.com/api/users/invitation_codes/{code}",
+    "method": "GET",
+    "sortNum": 18125,
+    "created": "2023-02-04T01:31:02.680Z",
+    "modified": "2023-02-04T01:31:24.882Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "code",
+        "value": "aaa",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "750278fc-8782-40fd-ace7-5988c1e538ea",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pets Health Trends",
+    "url": "https://app.whistle.com/api/pets/{petId}/health/trends",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-02-04T01:34:18.474Z",
+    "modified": "2023-02-04T01:48:04.438Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "292a4f2e-2bb2-41c8-b12b-d908a27ef5a0",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pets Health Graphs",
+    "url": "https://app.whistle.com/api/pets/{petId}/health/graphs/{trend_type}",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-02-04T01:34:23.517Z",
+    "modified": "2023-02-04T01:50:30.434Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      },
+      {
+        "name": "trend_type",
+        "value": "sleeping",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "docs": "Known types include: eating_events, sleeping",
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "3f2e2304-2d19-402b-84d5-2eece78ce351",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Dailies Daily Items",
+    "url": "https://app.whistle.com/api/pets/{petId}/dailies/{dayId}/daily_items",
+    "method": "GET",
+    "sortNum": 25000,
+    "created": "2023-02-04T01:34:25.313Z",
+    "modified": "2023-02-04T01:41:14.368Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "",
+        "isPath": true
+      },
+      {
+        "name": "dayId",
+        "value": "",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "d12eab14-3708-449d-b41f-efc19822779c",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Dailies Daily",
+    "url": "https://app.whistle.com/api/pets/{petId}/dailies/{dayId}",
+    "method": "GET",
+    "sortNum": 22500,
+    "created": "2023-02-04T01:34:27.682Z",
+    "modified": "2023-02-04T01:40:37.784Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "",
+        "isPath": true
+      },
+      {
+        "name": "dayId",
+        "value": "",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "86e4d701-7cf0-462b-abdd-b31872416e85",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Dailies",
+    "url": "https://app.whistle.com/api/pets/{petId}/dailies",
+    "method": "GET",
+    "sortNum": 21250,
+    "created": "2023-02-04T01:34:29.108Z",
+    "modified": "2023-02-04T01:40:12.992Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "cfd7e74d-b883-44c6-9455-1a81f2d7f73b",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Stats",
+    "url": "https://app.whistle.com/api/pets/{petId}/stats",
+    "method": "GET",
+    "sortNum": 20625,
+    "created": "2023-02-04T01:34:30.603Z",
+    "modified": "2023-02-04T01:39:34.080Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "9ef7cfff-8cc8-4478-bd78-7b996d59d42f",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Achievements",
+    "url": "https://app.whistle.com/api/pets/{petId}/achievements",
+    "method": "GET",
+    "sortNum": 20312.5,
+    "created": "2023-02-04T01:34:32.680Z",
+    "modified": "2023-02-04T01:37:31.921Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "6e4dc3e6-81f5-4a74-966f-48d310857959",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Whereabouts",
+    "url": "https://app.whistle.com/api/pets/{petId}/whereabouts",
+    "method": "GET",
+    "sortNum": 20156.3,
+    "created": "2023-02-04T01:34:35.415Z",
+    "modified": "2023-02-04T01:36:48.832Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "ab3fd144-1d42-4561-97f1-c18ffccc94d8",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Owners",
+    "url": "https://app.whistle.com/api/pets/{petId}/owners",
+    "method": "GET",
+    "sortNum": 20078.2,
+    "created": "2023-02-04T01:34:36.633Z",
+    "modified": "2023-02-04T01:36:17.185Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "9f86c97c-f55d-4e3a-97f4-18252aef1e28",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Transfers",
+    "url": "https://app.whistle.com/api/pets/transfers",
+    "method": "GET",
+    "sortNum": 20039.1,
+    "created": "2023-02-04T01:34:37.968Z",
+    "modified": "2023-02-04T01:35:53.946Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "6b3004b3-fb8f-4ad5-94c3-5f9802a48566",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet",
+    "url": "https://app.whistle.com/api/pets/{petId}",
+    "method": "GET",
+    "sortNum": 20058.7,
+    "created": "2023-02-04T01:34:39.265Z",
+    "modified": "2023-02-04T01:36:28.619Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "868d7ef7-bd4b-4b51-8992-acdce38579a0",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Nutrition Suggested Portions",
+    "url": "https://app.whistle.com/api/pets/{petId}/nutrition/v2/suggested_portions",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-02-04T01:50:50.746Z",
+    "modified": "2023-02-04T01:52:34.646Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "94b84c08-5c59-4b8e-a596-6569db7fb3dd",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Task Occurences",
+    "url": "https://app.whistle.com/api/pets/{petId}/task_occurrences?type=incomplete",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-02-04T01:51:04.923Z",
+    "modified": "2023-02-04T01:53:58.354Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      },
+      {
+        "name": "type",
+        "value": "incomplete",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "docs": "Known types: incomplete, complete, overdue, upcoming",
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "50978230-6401-4f4c-aecc-72c95862038d",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Food Portions",
+    "url": "https://app.whistle.com/api/pets/{petId}/pet_food_portions",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2023-02-04T01:51:06.886Z",
+    "modified": "2023-02-04T01:54:54.840Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "777799f0-2823-4118-8ecd-75d79cdb7077",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Locations Recent",
+    "url": "https://app.whistle.com/api/pets/{petId}/locations/recent_trackings",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2023-02-04T01:51:08.951Z",
+    "modified": "2023-02-04T01:55:13.534Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "b560a4fe-e41c-4d36-ac11-4aa20a093a4a",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Task",
+    "url": "https://app.whistle.com/api/pets/{petId}/tasks/{taskId}",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2023-02-04T01:55:40.328Z",
+    "modified": "2023-02-04T01:55:55.327Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      }
+    ],
+    "params": [
+      {
+        "name": "petId",
+        "value": "abc",
+        "isPath": true
+      },
+      {
+        "name": "taskId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "068eb385-88db-4f7f-b7d8-0b05c29fcfe5",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "2ea00657-aacd-44a7-bb8e-0f8b091668f2",
+    "name": "Adventure Categories",
+    "url": "https://app.whistle.com/api/adventures/categories",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-02-04T01:56:38.115Z",
+    "modified": "2023-02-04T01:57:15.085Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "eb296b0b-66e1-4606-af3f-63c591264b13",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "76fc95b8-5f4e-462c-a464-f573fefe4384",
+    "name": "Cancellation Preview",
+    "url": "https://app.whistle.com/api/subscriptions/{subId}/cancellation/preview",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-04T01:58:42.882Z",
+    "modified": "2023-02-04T01:59:38.039Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "subId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "cf0d9fc1-3db9-42f6-93e8-ebe13afff5ce",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "76fc95b8-5f4e-462c-a464-f573fefe4384",
+    "name": "Cancellation Reasons",
+    "url": "https://app.whistle.com/api/subscriptions/{subId}/cancellation/reasons",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-02-04T01:59:41.114Z",
+    "modified": "2023-02-04T01:59:47.457Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "subId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "a9dc0614-234e-4814-938e-85ed65c3434f",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "2ed3bcc7-82c8-46ae-9ddb-28bdbbb2652f",
+    "name": "Cats",
+    "url": "https://app.whistle.com/api/breeds/cats",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-02-04T02:00:28.258Z",
+    "modified": "2023-02-04T02:00:55.687Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "49319601-ce51-4fb7-aedf-cb4c36f50434",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "2ed3bcc7-82c8-46ae-9ddb-28bdbbb2652f",
+    "name": "Dogs",
+    "url": "https://app.whistle.com/api/breeds/dogs",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-04T02:01:03.178Z",
+    "modified": "2023-02-04T02:01:11.919Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "5b4e9cb2-e46c-48e9-8b1d-ff84a69b7fb2",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "2ea00657-aacd-44a7-bb8e-0f8b091668f2",
+    "name": "Places",
+    "url": "https://app.whistle.com/api/places",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-04T02:01:47.676Z",
+    "modified": "2023-02-04T02:01:56.542Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "c767b122-c6ec-4375-9262-36e928eea027",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Coupon",
+    "url": "https://app.whistle.com/api/coupons/{couponId}",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-02-04T02:02:15.831Z",
+    "modified": "2023-02-04T02:03:26.997Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "couponId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "8c703422-d4d0-44ac-9b01-3f2b1e24e42d",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Pet Foods",
+    "url": "https://app.whistle.com/api/pet_foods?type=dog_food",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-02-04T02:02:56.479Z",
+    "modified": "2023-02-04T02:05:31.455Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "type",
+        "value": "dog_food",
+        "isPath": false
+      },
+      {
+        "name": "type",
+        "value": "dog_treat",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "2610c0cd-1dd1-448b-bb8e-eef113d29833",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Reverse Geocode",
+    "url": "https://app.whistle.com/api/reverse_geocode",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-02-04T02:02:57.797Z",
+    "modified": "2023-02-04T02:06:26.500Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "docs": "TBD: Need to determine the parameters",
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "ca7b5856-1467-49ab-91c6-b2a1b229c245",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Partners VCA Device",
+    "url": "https://app.whistle.com/api/partners/vca/devices/{deviceId}",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-02-04T02:02:58.909Z",
+    "modified": "2023-02-04T02:07:05.837Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "abc",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "60c13534-4c9a-4e7b-8300-65bf0a56a346",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Partner Banfield Pets",
+    "url": "https://app.whistle.com/api/partners/banfield/pets/{clientId}",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-02-04T02:03:00.196Z",
+    "modified": "2023-02-04T02:10:56.942Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "clientId",
+        "value": "19391201",
         "isPath": true
       }
     ],

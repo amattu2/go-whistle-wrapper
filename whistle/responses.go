@@ -58,6 +58,10 @@ type UsersResponse struct {
 	Username               string               `json:"username"`
 }
 
+type MeResponse struct {
+	User UsersResponse `json:"user"`
+}
+
 type NotificationsResponse struct {
 	Items []Notification `json:"items"`
 }

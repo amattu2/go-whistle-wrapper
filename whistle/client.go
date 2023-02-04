@@ -103,7 +103,7 @@ func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
 	request.Header.Set("User-Agent", c.UserAgent)
 	request.Header.Set("Referer", "https://app.whistle.com/")
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Accept", "application/json")
+	request.Header.Set("Accept", "application/vnd.whistle.com.v4+json")
 	request.Header.Set("Accept-Language", "en-US")
 
 	// Add authorization
@@ -261,6 +261,27 @@ func (c Client) Users() (*UsersResponse, error) {
 	return &result, nil
 }
 
+func (c Client) Me() (*MeResponse, error) {
+	// Get data
+	resp, err := c.get("api/users/me", nil, true)
+	if err != nil {
+		return nil, err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
+	}
+
+	defer resp.Body.Close()
+
+	// Parse json response
+	body, _ := io.ReadAll(resp.Body)
+	result := MeResponse{}
+	json.Unmarshal(body, &result)
+
+	return &result, nil
+}
+
+// Notifications returns a list of notifications for the authenticated user
 func (c Client) Notifications() (*NotificationsResponse, error) {
 	// Get data
 	resp, err := c.get("api/notifications", nil, true)
