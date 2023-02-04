@@ -26,7 +26,23 @@ go get github.com/amattu2/go-whistle-wrapper
 The wrapper exposes two ways of instantiating a client.
 
 <details>
+  <summary>With Bearer Token</summary>
+
+  If you already have a bearer token,
+  you can instantiate a new wrapper via
+
+  ```go
+  whistle := whistle.InitializeBearer("API_TOKEN_HERE")
+  ```
+
+  This is useful for cases where you want to reduce overhead on page reload.
+  You should ideally use this method as often as possible.
+</details>
+
+<details>
   <summary>With API Key</summary>
+  **Note**: I believe this is deprecated and should not be used.
+  The mobile application uses HTTP bearer, and this may be removed unpredictably.
 
   If you already have an API key (`X-Whistle-AuthToken`),
   you can instantiate a new wrapper via
@@ -55,13 +71,15 @@ The wrapper exposes two ways of instantiating a client.
   <summary>Manually</summary>
 
   In the event that you have an advanced need, you may also
-  initialize the wrapper directly.
+  initialize the wrapper directly. You only need `email`/`password`, `token`,
+  or `bearer`, but never all 3 together.
 
   ```go
     client := whistle.Client{
-      email: "ABC",
-      password: "XYZ",
-      token: "123", // Not required if email/pass are passed
+      email: "ABC", // Option 1
+      password: "XYZ", // Option 1
+      token: "123", // Option 2
+      bearer: "abc12932", // Option 3
       Timeout: 3000,
       Env: whistle.ProdEnv, // Or: whistle.StagingEnv
       UserAgent: "Custom User Agent",
@@ -157,12 +175,13 @@ The following resources were used to compile this API wrapper.
 These are the remaining action items of this project.
 Some of them are on hold until I have a device to test with.
 
+- [X] Switch to Bearer usage
 - [ ] Test cases
 - [ ] Handle API key expiration or renewal
 - [ ] Finish README.md usage docs
 - [ ] Fill in missing struct definitions
 - [ ] Figure out what `highlightType` options are available
-- [ ] Add support for the async event pusher service
+- [ ] Add support for the async event pusher service (See "realtime_channel")
 
 <details>
   <summary>Confirm all of these are implemented</summary>

@@ -85,3 +85,20 @@ type DailyTotal struct {
 
 type Notification struct {
 }
+
+type User struct {
+	CreatedAt            string            `json:"created_at"`
+	CurrentUser          bool              `json:"current_user"`
+	Email                string            `json:"email"`
+	FirstName            string            `json:"first_name"`
+	ID                   string            `json:"id"`
+	LastName             string            `json:"last_name"`
+	ProfilePhotoUrl      string            `json:"profile_photo_url"`
+	ProfilePhotoUrlSizes map[string]string `json:"profile_photo_url_sizes"`
+	RealtimeChannel      RealtimeChannel   `json:"realtime_channel"`
+	Searchable           bool              `json:"searchable"`
+	SendMarketingEmails  bool              `json:"send_marketing_emails"`
+	UserActivations      string            `json:"user_activations"`
+	UserType             string            `json:"user_type"`
+	Username             string            `json:"username"`
+}

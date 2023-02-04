@@ -31,6 +31,12 @@ type TokenResponse struct {
 	Messages []string `json:"messages"`
 }
 
+type BearerResponse struct {
+	AuthToken    string `json:"auth_token"`
+	RefreshToken string `json:"refresh_token"`
+	User         User   `json:"user"`
+}
+
 type UsersResponse struct {
 	CreatedAt              string               `json:"created_at"`
 	CurrentUser            bool                 `json:"current_user"`
@@ -43,7 +49,7 @@ type UsersResponse struct {
 	LastName               string               `json:"last_name"`
 	Name                   string               `json:"name"`
 	NotificationSettings   NotificationSettings `json:"notification_settings"`
-	ProfilePhotoURL        string               `json:"profile_photo_url"`
+	ProfilePhotoUrl        string               `json:"profile_photo_url"`
 	ProfilePhotoSizes      map[string]string    `json:"profile_photo_sizes"`
 	RealtimeChannel        RealtimeChannel      `json:"realtime_channel"`
 	Searchable             bool                 `json:"searchable"`

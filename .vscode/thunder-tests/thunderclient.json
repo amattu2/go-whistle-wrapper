@@ -8,8 +8,13 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-02-03T22:18:02.014Z",
-    "modified": "2023-02-03T22:42:18.633Z",
-    "headers": [],
+    "modified": "2023-02-04T00:40:43.601Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
     "params": [],
     "body": {
       "type": "formencoded",
@@ -39,11 +44,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "e68ef0e7-7fd7-41a7-a2b4-617a0924d5b5",
     "name": "Tokens",
-    "url": "https://app.whistle.com/api/tokens.json",
+    "url": "https://app.whistle.com/api/tokens",
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-02-03T22:20:24.581Z",
-    "modified": "2023-02-03T22:23:18.704Z",
+    "modified": "2023-02-04T00:52:23.590Z",
     "headers": [
       {
         "name": "Accept",

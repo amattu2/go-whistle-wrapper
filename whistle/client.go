@@ -42,8 +42,9 @@ type Client struct {
 	// API Password
 	password string
 
-	// API Token
-	token string
+	// API Token or HTTP Bearer
+	token  string
+	bearer string
 
 	// Environment
 	// ProdEnv or StagingEnv
@@ -83,11 +84,44 @@ func InitializeToken(token string) *Client {
 	}
 }
 
+// InitializeBearer creates a new client with the given bearer.
+// Can be used to restore a session.
+//
+// bearer HTTP Bearer
+func InitializeBearer(bearer string) *Client {
+	return &Client{
+		bearer:    bearer,
+		Timeout:   10 * time.Second,
+		Env:       ProdEnv,
+		UserAgent: "Mozilla/5.0 (X11; Linux x86_64)",
+	}
+}
+
+// Add a default set of headers to the request
+func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
+	// Add headers
+	request.Header.Set("User-Agent", c.UserAgent)
+	request.Header.Set("Referer", "https://app.whistle.com/")
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Accept", "application/json")
+	request.Header.Set("Accept-Language", "en-US")
+
+	// Add authorization
+	if addAuth {
+		if c.token != "" {
+			request.Header.Set("X-Whistle-AuthToken", c.getToken())
+		} else {
+			request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.getBearer()))
+		}
+	}
+}
+
 // Get performs a GET request to the given path
 //
 // path API path
 // headers HTTP headers
-func (c *Client) Get(path string, headers map[string]string) (*http.Response, error) {
+// addAuth whether to add authorization
+func (c *Client) get(path string, headers map[string]string, addAuth bool) (*http.Response, error) {
 	// Initialize the client
 	client := http.Client{}
 	client.Timeout = c.Timeout
@@ -99,11 +133,7 @@ func (c *Client) Get(path string, headers map[string]string) (*http.Response, er
 	}
 
 	// Add headers
-	request.Header.Set("User-Agent", c.UserAgent)
-	request.Header.Set("Referer", "https://app.whistle.com/")
-	request.Header.Set("X-Whistle-AuthToken", c.getToken())
-	request.Header.Set("Accept", "application/json")
-	request.Header.Set("Accept-Language", "en-US")
+	c.addDefaultHeaders(request, true)
 	for key, value := range headers {
 		request.Header.Set(key, value)
 	}
@@ -116,7 +146,8 @@ func (c *Client) Get(path string, headers map[string]string) (*http.Response, er
 // path API path
 // headers HTTP headers
 // body HTTP body (JSON)
-func (c *Client) Post(path string, headers map[string]string, body map[string]string) (*http.Response, error) {
+// addAuth whether to add authorization
+func (c *Client) post(path string, headers map[string]string, body map[string]string, addAuth bool) (*http.Response, error) {
 	// Initialize the client
 	client := http.Client{}
 	client.Timeout = c.Timeout
@@ -129,11 +160,7 @@ func (c *Client) Post(path string, headers map[string]string, body map[string]st
 	}
 
 	// Add headers
-	request.Header.Set("User-Agent", c.UserAgent)
-	request.Header.Set("Referer", "https://app.whistle.com/")
-	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Accept", "application/json")
-	request.Header.Set("Accept-Language", "en-US")
+	c.addDefaultHeaders(request, addAuth)
 	for key, value := range headers {
 		request.Header.Set(key, value)
 	}
@@ -142,6 +169,8 @@ func (c *Client) Post(path string, headers map[string]string, body map[string]st
 }
 
 // getToken returns the API token from a user's email and password
+//
+// Note: It is STRONGLY recommended to use getBearer instead
 func (c *Client) getToken() string {
 	// If token is empty, login and get token
 	if (c.token) == "" {
@@ -150,7 +179,7 @@ func (c *Client) getToken() string {
 			"password": c.password,
 		}
 
-		resp, err := c.Post("api/tokens.json", nil, data)
+		resp, err := c.post("api/tokens", nil, data, false)
 		if err != nil {
 			panic(err)
 		}
@@ -176,10 +205,45 @@ func (c *Client) getToken() string {
 	return c.token
 }
 
+// getBearer returns the HTTP Bearer from a user's email and password
+func (c *Client) getBearer() string {
+	// If bearer is empty, login and get bearer
+	if (c.bearer) == "" {
+		data := map[string]string{
+			"email":    c.email,
+			"password": c.password,
+		}
+
+		resp, err := c.post("api/login", nil, data, false)
+		if err != nil {
+			panic(err)
+		}
+		if resp.StatusCode != http.StatusCreated {
+			panic(fmt.Errorf("auth failed with HTTP error: %d", resp.StatusCode))
+		}
+
+		defer resp.Body.Close()
+
+		// Parse json response
+		body, _ := io.ReadAll(resp.Body)
+		result := BearerResponse{}
+		json.Unmarshal(body, &result)
+
+		if result.AuthToken == "" {
+			panic("Failed to get bearer")
+		}
+
+		c.bearer = result.AuthToken
+	}
+
+	// Return HTTP Bearer
+	return c.bearer
+}
+
 // Users returns a list of information about the authenticated user's account
 func (c Client) Users() (*UsersResponse, error) {
 	// Get data
-	resp, err := c.Get("api/users.json", nil)
+	resp, err := c.get("api/users", nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -199,7 +263,7 @@ func (c Client) Users() (*UsersResponse, error) {
 
 func (c Client) Notifications() (*NotificationsResponse, error) {
 	// Get data
-	resp, err := c.Get("api/notifications.json", nil)
+	resp, err := c.get("api/notifications", nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -222,7 +286,7 @@ func (c Client) Notifications() (*NotificationsResponse, error) {
 // serialNumber Device ID or serial number
 func (c Client) Device(serialNumber string) (*[]Device, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/devices/%s.json", serialNumber), nil)
+	resp, err := c.get(fmt.Sprintf("api/devices/%s", serialNumber), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -243,7 +307,7 @@ func (c Client) Device(serialNumber string) (*[]Device, error) {
 // Dogs returns a list of information about the authenticated user's dogs
 func (c Client) Dogs() (*[]Dog, error) {
 	// Get data
-	resp, err := c.Get("api/dogs.json", nil)
+	resp, err := c.get("api/dogs", nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -266,7 +330,7 @@ func (c Client) Dogs() (*[]Dog, error) {
 // dogId Dog ID
 func (c Client) Dog(dogId string) (*Dog, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s.json", dogId), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s", dogId), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -290,7 +354,7 @@ func (c Client) Dog(dogId string) (*Dog, error) {
 // highlightType Highlight type (TBD)
 func (c Client) Highlights(dogId string, highlightType string) (*[]Highlight, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/highlights.json?type=%s", dogId, highlightType), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/highlights?type=%s", dogId, highlightType), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -314,7 +378,7 @@ func (c Client) Highlights(dogId string, highlightType string) (*[]Highlight, er
 // limit Number of dailies to return
 func (c Client) Dailies(dogId string, limit int) (*[]Daily, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/dailies.json?count=%d", dogId, limit), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/dailies?count=%d", dogId, limit), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -338,7 +402,7 @@ func (c Client) Dailies(dogId string, limit int) (*[]Daily, error) {
 // dailyId Daily ID
 func (c Client) Daily(dogId string, dailyId string) (*Daily, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/dailies/%s.json", dogId, dailyId), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/dailies/%s", dogId, dailyId), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -362,7 +426,7 @@ func (c Client) Daily(dogId string, dailyId string) (*Daily, error) {
 // timelineId Timeline ID
 func (c Client) Timeline(dogId string, timelineId string) (*Timeline, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/timelines/%s.json", dogId, timelineId), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/timelines/%s", dogId, timelineId), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -382,7 +446,7 @@ func (c Client) Timeline(dogId string, timelineId string) (*Timeline, error) {
 
 // func (c Client) Statistics(dogId string, statType string) (*StatisticsResponse, error) {
 // 	// Get data
-// 	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/stats.json?type=%s", dogId, statType), nil)
+// 	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats?type=%s", dogId, statType), nil, true)
 // 	if err != nil {
 // 		return nil, err
 // 	}
@@ -407,7 +471,7 @@ func (c Client) Timeline(dogId string, timelineId string) (*Timeline, error) {
 // Note: Unsure if this endpoint actually does anything
 func (c Client) UsersPresent(dogId string) (*UsersPresentResponse, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/stats/users_present.json", dogId), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/users_present", dogId), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -430,7 +494,7 @@ func (c Client) UsersPresent(dogId string) (*UsersPresentResponse, error) {
 // dogId Dog ID
 func (c Client) Goals(dogId string) (*[]Goal, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/stats/goals.json", dogId), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/goals", dogId), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -453,7 +517,7 @@ func (c Client) Goals(dogId string) (*[]Goal, error) {
 // dogId Dog ID
 func (c Client) Averages(dogId string) (*[]Average, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/stats/averages.json", dogId), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/averages", dogId), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -477,7 +541,7 @@ func (c Client) Averages(dogId string) (*[]Average, error) {
 // startDate Start date for the daily total events
 func (c Client) DailyTotals(dogId string, startDate time.Time) (*[]DailyTotal, error) {
 	// Get data
-	resp, err := c.Get(fmt.Sprintf("api/dogs/%s/stats/daily_totals.json?start_time=%s", dogId, startDate.Format("Y-m-d")), nil)
+	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/daily_totals?start_time=%s", dogId, startDate.Format("Y-m-d")), nil, true)
 	if err != nil {
 		return nil, err
 	}
@@ -498,7 +562,7 @@ func (c Client) DailyTotals(dogId string, startDate time.Time) (*[]DailyTotal, e
 // UsersCreditCard returns the abbreviated credit card details for the current user
 func (c Client) UsersCreditCard() (*CreditCard, error) {
 	// Get data
-	resp, err := c.Get("api/users/credit_card.json", nil)
+	resp, err := c.get("api/users/credit_card", nil, true)
 	if err != nil {
 		return nil, err
 	}
