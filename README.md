@@ -126,6 +126,6 @@ Some of them are on hold until I have a device to test with.
 - [X] Switch to Bearer usage
 - [X] Implement all of the newly discovered endpoints (see Thunder Client)
 - [X] Test cases
-- [ ] Handle API key expiration or renewal
+- [ ] ~~Handle API key expiration or renewal~~
 - [ ] Finish README.md usage documentation
 - [ ] Add support for the async event pusher service (See `realtime_channel`)

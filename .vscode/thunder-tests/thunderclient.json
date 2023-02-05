@@ -1223,9 +1223,9 @@
     "name": "Pet Locations Recent",
     "url": "https://app.whistle.com/api/pets/{petId}/locations/recent_trackings",
     "method": "GET",
-    "sortNum": 90000,
+    "sortNum": 20234.4,
     "created": "2023-02-04T01:51:08.951Z",
-    "modified": "2023-02-04T01:55:13.534Z",
+    "modified": "2023-02-05T14:44:58.068Z",
     "headers": [
       {
         "name": "Accept",
@@ -1262,9 +1262,9 @@
     "name": "Pet Task",
     "url": "https://app.whistle.com/api/pets/{petId}/tasks/{taskId}",
     "method": "GET",
-    "sortNum": 100000,
+    "sortNum": 67500,
     "created": "2023-02-04T01:55:40.328Z",
-    "modified": "2023-02-04T01:55:55.327Z",
+    "modified": "2023-02-05T14:38:32.753Z",
     "headers": [
       {
         "name": "Accept",
