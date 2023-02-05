@@ -438,18 +438,18 @@ These are operations not categorized by another API route.
 </details>
 
 <details>
-  <summary>ReverseGeocode(...)</summary>
+  <summary>ReverseGeocode(latitude string, longitude string)</summary>
 
-  Current usage unknown.
+  Decode latitude and longitude to a physical address.
 
   ```go
   // ...
-  q := client.ReverseGeocode()
+  q := client.ReverseGeocode("LAT", "LON")
 
   q.StatusCode // "200"
   q.Error // nil
 
-  fmt.Println(q.Response) // TBD
+  fmt.Println(q.Response.Description) // {address: ..., region: ..., etc}
   // ...
   ```
 

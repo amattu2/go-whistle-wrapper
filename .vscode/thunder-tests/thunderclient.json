@@ -1572,18 +1572,29 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
     "name": "Reverse Geocode",
-    "url": "https://app.whistle.com/api/reverse_geocode",
+    "url": "https://app.whistle.com/api/reverse_geocode?latitude=37.768578&longitude=-92.286243",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T02:02:57.797Z",
-    "modified": "2023-02-04T02:06:26.500Z",
+    "modified": "2023-02-05T19:08:29.749Z",
     "headers": [
       {
         "name": "Accept",
         "value": "application/vnd.whistle.com.v4+json"
       }
     ],
-    "params": [],
+    "params": [
+      {
+        "name": "latitude",
+        "value": "37.768578",
+        "isPath": false
+      },
+      {
+        "name": "longitude",
+        "value": "-92.286243",
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{bearer}}"

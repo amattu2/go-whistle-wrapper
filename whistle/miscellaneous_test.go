@@ -99,7 +99,19 @@ func TestPetFoodsInvalidType(t *testing.T) {
 }
 
 func TestReverseGeocode(t *testing.T) {
-	t.Skip("TBD: Unknown request parameters")
+	t.Parallel()
+
+	client := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	// https://www.google.com/maps/place/37%C2%B046'06.9%22N+92%C2%B017'10.5%22W
+	resp := client.ReverseGeocode("37.768578", "-92.286243")
+
+	assert.Equal(t, nil, resp.Error)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.NotEqual(t, resp.Response.Description.Address, nil) // Exact address is not guaranteed
+	assert.Equal(t, resp.Response.Description.City, "Laquey")
+	assert.Equal(t, resp.Response.Description.Region, "Missouri")
+	assert.Equal(t, resp.Response.Description.Country, "United States")
 }
 
 func TestPlaces(t *testing.T) {

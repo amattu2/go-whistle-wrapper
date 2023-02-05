@@ -33,6 +33,16 @@ type NotificationsResponse struct {
 }
 
 type ReverseGeocodeResponse struct {
+	Description GeocodeDescription `json:"description"`
+	QueryLat    string             `json:"query_latitude"`
+	QueryLon    string             `json:"query_longitude"`
+}
+
+type GeocodeDescription struct {
+	Address string `json:"address"`
+	City    string `json:"place"`
+	Region  string `json:"region"`
+	Country string `json:"country"`
 }
 
 type AdventureCategoriesResponse struct {
@@ -100,8 +110,8 @@ func (c Client) PetFoods(foodType string) *HttpResponse[[]PetFood] {
 }
 
 // Todo: Figure out what arguments are required
-func (c Client) ReverseGeocode() *HttpResponse[ReverseGeocodeResponse] {
-	resp, err := c.get("api/reverse_geocode", nil, true)
+func (c Client) ReverseGeocode(lat string, lon string) *HttpResponse[ReverseGeocodeResponse] {
+	resp, err := c.get(fmt.Sprintf("api/reverse_geocode?latitude=%s&longitude=%s", lat, lon), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
 		return &HttpResponse[ReverseGeocodeResponse]{
 			StatusCode: resp.StatusCode,
