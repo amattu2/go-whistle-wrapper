@@ -245,7 +245,131 @@ header to be present in ALL REQUESTS otherwise it will return 404.
 
 ### Devices
 
-Todo
+<details>
+  <summary>Device(deviceId string)</summary>
+
+  Provides information about the specified smart collar device.
+
+  ```go
+  // ...
+  q := client.Device("serial_num")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DeviceActivation(deviceId string)</summary>
+
+  Provides information about the specified device activation status
+
+  ```go
+  // ...
+  q := client.DeviceActivation("serial_num")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DevicePlans(deviceId string)</summary>
+
+  Provides information about the specified device plans
+
+  ```go
+  // ...
+  q := client.DevicePlans("serial_num")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DevicePlans(deviceId string)</summary>
+
+  Provides information about the specified device plans
+
+  ```go
+  // ...
+  q := client.DevicePlans("serial_num")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DeviceSubscription(deviceId string)</summary>
+
+  Provides information about the specified device subscription status
+
+  ```go
+  // ...
+  q := client.DeviceSubscription("serial_num")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DeviceSubscriptionPreview(deviceId string, planId string)</summary>
+
+  Current usage unknown
+
+  ```go
+  // ...
+  q := client.DeviceSubscriptionPreview("serial_num", "abc")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DeviceUpgradePreview(deviceId string)</summary>
+
+  Current usage unknown
+
+  ```go
+  // ...
+  q := client.DeviceUpgradePreview("serial_num")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
 
 ### Breeds
 
