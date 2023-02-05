@@ -386,15 +386,19 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
     "name": "Subscription Previews",
-    "url": "https://app.whistle.com/api/devices/{deviceId}/subscription/previews/{planId}",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/subscription/previews/{planId}?coupon_id=abc",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-02-04T01:24:08.846Z",
-    "modified": "2023-02-04T20:09:04.737Z",
+    "modified": "2023-02-05T20:04:51.363Z",
     "headers": [
       {
         "name": "Accept",
         "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Accept-Currency",
+        "value": "USD"
       }
     ],
     "params": [
@@ -407,6 +411,11 @@
         "name": "planId",
         "value": "aa",
         "isPath": true
+      },
+      {
+        "name": "coupon_id",
+        "value": "abc",
+        "isPath": false
       }
     ],
     "auth": {
@@ -469,11 +478,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
     "name": "Upgrade Preview",
-    "url": "https://app.whistle.com/api/devices/{deviceId}/upgrade/preview",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/upgrade/preview?serial_number=abc&plan_id=abc&coupon_id=abc",
     "method": "GET",
     "sortNum": 65000,
     "created": "2023-02-04T01:26:58.643Z",
-    "modified": "2023-02-04T01:27:35.066Z",
+    "modified": "2023-02-05T20:06:03.876Z",
     "headers": [
       {
         "name": "Accept",
@@ -485,6 +494,21 @@
         "name": "deviceId",
         "value": "abc",
         "isPath": true
+      },
+      {
+        "name": "serial_number",
+        "value": "abc",
+        "isPath": false
+      },
+      {
+        "name": "plan_id",
+        "value": "abc",
+        "isPath": false
+      },
+      {
+        "name": "coupon_id",
+        "value": "abc",
+        "isPath": false
       }
     ],
     "auth": {
@@ -545,11 +569,11 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-02-04T01:29:39.695Z",
-    "modified": "2023-02-04T19:01:10.553Z",
+    "modified": "2023-02-05T20:03:24.009Z",
     "headers": [
       {
         "name": "Accept",
-        "value": "application/vnd.whistle.com.v4+json"
+        "value": "application/vnd.whistle.com.v4"
       }
     ],
     "params": [],
@@ -1291,20 +1315,15 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
     "name": "Adventure Poi",
-    "url": "https://app.whistle.com/api/adventures/poi?latitude=37.768578&longitude=-92.286243&category=x&radius=25",
+    "url": "https://app.whistle.com/api/adventures/poi?latitude=37.768578&longitude=-92.286243&category[]=x&radius=25",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-02-04T01:56:38.115Z",
-    "modified": "2023-02-05T19:24:54.841Z",
+    "modified": "2023-02-05T20:08:01.045Z",
     "headers": [
       {
         "name": "Accept",
         "value": "application/vnd.whistle.com.v4+json"
-      },
-      {
-        "name": "Accept",
-        "value": "application/json",
-        "isDisabled": true
       }
     ],
     "params": [
@@ -1319,7 +1338,7 @@
         "isPath": false
       },
       {
-        "name": "category",
+        "name": "category[]",
         "value": "x",
         "isPath": false
       },
@@ -1501,11 +1520,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
     "name": "Coupon",
-    "url": "https://app.whistle.com/api/coupons/{couponId}",
+    "url": "https://app.whistle.com/api/coupons/{couponId}?plan_id=abc",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T02:02:15.831Z",
-    "modified": "2023-02-04T19:29:55.580Z",
+    "modified": "2023-02-05T20:06:31.092Z",
     "headers": [
       {
         "name": "Accept",
@@ -1517,6 +1536,11 @@
         "name": "couponId",
         "value": "abc",
         "isPath": true
+      },
+      {
+        "name": "plan_id",
+        "value": "abc",
+        "isPath": false
       }
     ],
     "auth": {
