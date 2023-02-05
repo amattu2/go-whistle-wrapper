@@ -52,7 +52,7 @@ type DeviceUpgradePreviewResponse struct {
 	Error string `json:"error"`
 }
 
-// Get detailed information about a device by deviceId
+// Device gets detailed information about a smart collar device by deviceId
 func (c Client) Device(deviceId string) *HttpResponse[DeviceResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s", deviceId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -77,7 +77,7 @@ func (c Client) Device(deviceId string) *HttpResponse[DeviceResponse] {
 	}
 }
 
-// Get detailed information about device activation status by deviceId
+// DeviceActivation returns detailed information about device activation status by deviceId
 func (c Client) DeviceActivation(deviceId string) *HttpResponse[DeviceActivationResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s/activation", deviceId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -102,7 +102,7 @@ func (c Client) DeviceActivation(deviceId string) *HttpResponse[DeviceActivation
 	}
 }
 
-// Get available plans for a device by deviceId
+// DevicePlans provides the available plans for a device by deviceId
 func (c Client) DevicePlans(deviceId string) *HttpResponse[DevicePlansResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s/plans", deviceId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -127,7 +127,7 @@ func (c Client) DevicePlans(deviceId string) *HttpResponse[DevicePlansResponse] 
 	}
 }
 
-// Get detailed information about device subscription by deviceId
+// DeviceSubscription returns detailed information about device subscription by deviceId
 func (c Client) DeviceSubscription(deviceId string) *HttpResponse[DeviceSubscriptionResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s/subscription", deviceId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -152,7 +152,7 @@ func (c Client) DeviceSubscription(deviceId string) *HttpResponse[DeviceSubscrip
 	}
 }
 
-// Get information about device subscription renewal by deviceId and planId
+// DeviceSubscriptionPreview gets information about device subscription renewal by deviceId and planId
 func (c Client) DeviceSubscriptionPreview(deviceId string, planId string) *HttpResponse[DeviceSubscriptionPreviewResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s/subscription/previews/%s", deviceId, planId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -177,7 +177,7 @@ func (c Client) DeviceSubscriptionPreview(deviceId string, planId string) *HttpR
 	}
 }
 
-// Get information about device upgrade by deviceId
+// DeviceUpgradePreview returns information about device upgrade by deviceId
 func (c Client) DeviceUpgradePreview(deviceId string) *HttpResponse[DeviceUpgradePreviewResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s/upgrade/preview", deviceId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {

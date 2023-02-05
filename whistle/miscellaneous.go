@@ -28,10 +28,6 @@ import (
 	"net/http"
 )
 
-// ---------------------------------
-// Structures
-// ---------------------------------
-
 type NotificationsResponse struct {
 	Items []Notification `json:"items"`
 }
@@ -53,11 +49,7 @@ type Notification struct {
 type Place struct {
 }
 
-// ---------------------------------
-// Functions
-// ---------------------------------
-
-// Get current user's pending notifications
+// Notifications returns a list of the pending notifications for the user.
 func (c Client) Notifications() *HttpResponse[NotificationsResponse] {
 	resp, err := c.get("api/notifications", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -82,7 +74,7 @@ func (c Client) Notifications() *HttpResponse[NotificationsResponse] {
 	}
 }
 
-// Get list of pet foods by food type (dog_treat, dog_food)
+// PetFoods lists the pet foods by food type (dog_treat, dog_food)
 func (c Client) PetFoods(foodType string) *HttpResponse[[]PetFood] {
 	resp, err := c.get(fmt.Sprintf("api/pet_foods?type=%s", foodType), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -132,7 +124,7 @@ func (c Client) ReverseGeocode() *HttpResponse[ReverseGeocodeResponse] {
 	}
 }
 
-// Returns a list of places tied to the current user
+// Places returns a list of places tied to the current user
 func (c Client) Places() *HttpResponse[[]Place] {
 	resp, err := c.get("api/places", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -157,7 +149,7 @@ func (c Client) Places() *HttpResponse[[]Place] {
 	}
 }
 
-// Returns a list of adventure categories
+// AdventureCategories returns a list of adventure categories
 func (c Client) AdventureCategories() *HttpResponse[AdventureCategoriesResponse] {
 	// Get data
 	resp, err := c.get("api/adventures/categories", nil, true)

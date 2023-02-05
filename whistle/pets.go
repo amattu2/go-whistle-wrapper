@@ -451,7 +451,8 @@ func (c Client) PetNutritionPortions(petId string) *HttpResponse[PetNutritionPor
 }
 
 // PetFoodPortions returns information about food portions for a pet.
-// @Deprecated Use PetNutritionPortions instead
+//
+// Deprecated: Use PetNutritionPortions instead
 func (c Client) PetFoodPortions(petId string) *HttpResponse[PetFoodPortionsResponse] {
 	resp, err := c.get("api/pets/"+petId+"/pet_food_portions", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {

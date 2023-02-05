@@ -95,13 +95,278 @@ header to be present in ALL REQUESTS otherwise it will return 404.
 
 ### Users
 
+<details>
+  <summary>DEPRECATED: Users()</summary>
+
+  Get information about the currently authenticated user.
+  This does NOT provide information about all associated users.
+
+  ```go
+  // ...
+  q := client.Users()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // {CreatedAt, ..., Username}
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>Me()</summary>
+
+  Returns information about the authenticated user.
+
+  ```go
+  // ...
+  q := client.Me()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response.User) // {CreatedAt, ..., Username}
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>InvitationCodes(code string)</summary>
+
+  Current usage unknown.
+
+  ```go
+  // ...
+  q := client.InvitationCodes("code123")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>ApplicationState()</summary>
+
+  Get information about the current application state.
+  Current usage unknown.
+
+  ```go
+  // ...
+  q := client.ApplicationState()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response.ApplicationState) // {...}
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>DEPRECATED: CreditCard()</summary>
+
+  Get information about the current credit card on file.
+  Does not return the actual card number.
+
+  ```go
+  // ...
+  q := client.CreditCard()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response)  // {CardType, ..., ZipCode}
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>Subscriptions()</summary>
+
+  Get a list of subscriptions tied to an account, along with
+  any Partner subscriptions.
+
+  ```go
+  // ...
+  q := client.Subscriptions()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // {Subscriptions: ..., PartnerServices: ...}
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>CancellationPreview()</summary>
+
+  Current usage unknown.
+
+  ```go
+  // ...
+  q := client.CancellationPreview()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>CancellationReasons()</summary>
+
+  Current usage unknown.
+
+  ```go
+  // ...
+  q := client.CancellationReasons()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
 ### Devices
+
+Todo
 
 ### Breeds
 
+<details>
+  <summary>Breeds(animal string)</summary>
+
+  Provides a list of breeds given the current animal species.
+  Known options are `dogs` or `cats`
+
+  ```go
+  // ...
+  q := client.Breeds("dogs")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response.Breeds) // [{ID: 123, Name: "German Shepherd", ...}, ...]
+  // ...
+  ```
+
+</details>
+
 ### Pets
 
+Todo
+
 ### Miscellaneous
+
+These are operations not categorized by another API route.
+
+<details>
+  <summary>Notifications()</summary>
+
+  Returns an array of unread notifications for the current user.
+
+  ```go
+  // ...
+  q := client.Notifications()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // {Items: [...]}
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>PetFoods(foodType string)</summary>
+
+  Returns a list of pet foods given the food type.
+  Known options are `dog_treat`, `dog_food`. Cat variant does not work.
+
+  ```go
+  // ...
+  q := client.PetFoods("dog_food")
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // [{ID: 321, Name: "Purina XXX"}, ...]
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>ReverseGeocode(...)</summary>
+
+  Current usage unknown.
+
+  ```go
+  // ...
+  q := client.ReverseGeocode()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>Places()</summary>
+
+  Returns a list of saved (?) places tied to a user account.
+
+  ```go
+  // ...
+  q := client.Places()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
+
+<details>
+  <summary>AdventureCategories()</summary>
+
+  Returns a list of adventure categories.
+  Current usage unknown.
+
+  ```go
+  // ...
+  q := client.AdventureCategories()
+
+  q.StatusCode // "200"
+  q.Error // nil
+
+  fmt.Println(q.Response) // TBD
+  // ...
+  ```
+
+</details>
 
 # Requirements
 

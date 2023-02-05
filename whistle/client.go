@@ -35,10 +35,6 @@ const (
 	StagingEnv = "https://app-staging.whistle.com"
 )
 
-// ---------------------------------
-// Structures
-// ---------------------------------
-
 type Client struct {
 	// API Credentials
 	email, password string
@@ -110,10 +106,7 @@ type RealtimeChannel struct {
 	Service string `json:"service"`
 }
 
-// ---------------------------------
-// Functions
-// ---------------------------------
-
+// Initialize creates a new client with email and password credentials.
 func Initialize(email string, password string) *Client {
 	if email == "" || password == "" {
 		panic("valid email and password are required")
@@ -128,6 +121,9 @@ func Initialize(email string, password string) *Client {
 	}
 }
 
+// InitializeToken creates a new client with an existing API token.
+//
+// Deprecated: Use username/password or bearer token instead
 func InitializeToken(token string) *Client {
 	if token == "" {
 		panic("valid API token is required")
@@ -141,6 +137,7 @@ func InitializeToken(token string) *Client {
 	}
 }
 
+// InitializeBearer creates a new client with an existing HTTP bearer token.
 func InitializeBearer(bearer string) *Client {
 	if bearer == "" {
 		panic("valid http bearer is required")
@@ -154,6 +151,7 @@ func InitializeBearer(bearer string) *Client {
 	}
 }
 
+// addDefaultHeaders adds default headers to a Whistle API request
 func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
 	// Add headers
 	request.Header.Set("User-Agent", c.UserAgent)
@@ -172,6 +170,7 @@ func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
 	}
 }
 
+// get makes a HTTP GET request to the Whistle API
 func (c *Client) get(path string, headers map[string]string, addAuth bool) (*http.Response, error) {
 	// Initialize the client
 	client := http.Client{}
@@ -192,6 +191,7 @@ func (c *Client) get(path string, headers map[string]string, addAuth bool) (*htt
 	return client.Do(request)
 }
 
+// post makes a HTTP POST request to the Whistle API
 func (c *Client) post(path string, headers map[string]string, body map[string]string, addAuth bool) (*http.Response, error) {
 	// Initialize the client
 	client := http.Client{}
@@ -213,6 +213,9 @@ func (c *Client) post(path string, headers map[string]string, body map[string]st
 	return client.Do(request)
 }
 
+// getToken returns the API token if it exists, otherwise it will login and return the token
+//
+// Deprecated: Use getBearer() instead
 func (c *Client) getToken() string {
 	// If token is empty, login and get token
 	if c.token == "" && c.email != "" && c.password != "" {
@@ -247,6 +250,7 @@ func (c *Client) getToken() string {
 	return c.token
 }
 
+// getBearer returns the HTTP bearer if it exists, otherwise it will login and return the bearer
 func (c *Client) getBearer() string {
 	// If bearer is empty, login and get bearer
 	if c.bearer == "" && c.email != "" && c.password != "" {

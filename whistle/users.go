@@ -28,10 +28,6 @@ import (
 	"net/http"
 )
 
-// ---------------------------------
-// Structures
-// ---------------------------------
-
 type InvitationCodeResponse struct {
 	Errors []Error `json:"errors"`
 }
@@ -116,12 +112,9 @@ type Dog struct {
 type Friends struct {
 }
 
-// ---------------------------------
-// Functions
-// ---------------------------------
-
-// Get information about the current user
-// @deprecated
+// Users returns information about the current user
+//
+// Deprecated: Use Me() instead
 func (c Client) Users() *HttpResponse[UsersResponse] {
 	resp, err := c.get("api/users", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -146,7 +139,7 @@ func (c Client) Users() *HttpResponse[UsersResponse] {
 	}
 }
 
-// Get information about the current user
+// Me returns information about the current user
 func (c Client) Me() *HttpResponse[MeResponse] {
 	resp, err := c.get("api/users/me", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -196,7 +189,7 @@ func (c Client) InvitationCodes(code string) *HttpResponse[InvitationCodeRespons
 	}
 }
 
-// Get information about the current application state
+// ApplicationState provides information about the current application state
 func (c Client) ApplicationState() *HttpResponse[ApplicationStateResponse] {
 	resp, err := c.get("api/users/application_state", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -221,8 +214,9 @@ func (c Client) ApplicationState() *HttpResponse[ApplicationStateResponse] {
 	}
 }
 
-// Get information about the current user's credit card
-// @deprecated
+// CreditCard provides information about the current user's credit card on file
+//
+// Deprecated: Unknown replacement.
 func (c Client) CreditCard() *HttpResponse[CreditCard] {
 	resp, err := c.get("api/users/credit_card", map[string]string{"Accept": "application/json"}, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -247,7 +241,7 @@ func (c Client) CreditCard() *HttpResponse[CreditCard] {
 	}
 }
 
-// Get a listing of the current user's subscriptions
+// Subscriptions provides a listing of the current user's subscriptions
 func (c Client) Subscriptions() *HttpResponse[SubscriptionsResponse] {
 	resp, err := c.get("api/users/subscriptions", nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
