@@ -133,6 +133,24 @@ header to be present in ALL REQUESTS otherwise it will return 404.
 </details>
 
 <details>
+  <summary>CheckEmail(email string)</summary>
+
+  Used to check if an email exists within the database.
+
+  HTTP 404 - Non existing
+  HTTP 204 - User exists
+
+  ```go
+  // ...
+  q := client.CheckEmail("abc@gmail.com")
+
+  fmt.Println(q.Response) // true = exists, false = non-existing
+  // ...
+  ```
+
+</details>
+
+<details>
   <summary>InvitationCodes(code string)</summary>
 
   Current usage unknown.

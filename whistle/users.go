@@ -26,6 +26,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 )
 
 type InvitationCodeResponse struct {
@@ -161,6 +162,37 @@ func (c Client) Me() *HttpResponse[MeResponse] {
 		StatusCode: resp.StatusCode,
 		Response:   result,
 		Raw:        resp,
+	}
+}
+
+// CheckEmail checks the provided email address to see if it is already in use
+func (c Client) CheckEmail(email string) *HttpResponse[bool] {
+	email = strings.ReplaceAll(email, "@", "%40")
+	email = strings.ReplaceAll(email, ".", "%2E")
+
+	resp, err := c.get(fmt.Sprintf("api/users/emails/%s", email), nil, true)
+
+	if err != nil {
+		return &HttpResponse[bool]{
+			Error: err,
+			Raw:   resp,
+		}
+	}
+
+	defer resp.Body.Close()
+
+	if http.StatusNoContent == resp.StatusCode {
+		return &HttpResponse[bool]{
+			StatusCode: resp.StatusCode,
+			Response:   true,
+			Raw:        resp,
+		}
+	} else {
+		return &HttpResponse[bool]{
+			StatusCode: resp.StatusCode,
+			Response:   false,
+			Raw:        resp,
+		}
 	}
 }
 

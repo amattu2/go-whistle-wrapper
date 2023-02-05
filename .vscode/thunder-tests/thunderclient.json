@@ -241,13 +241,13 @@
   {
     "_id": "49681bad-a43f-406b-ae47-b36e002d6e5a",
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
-    "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
-    "name": "Emails",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Check Email",
     "url": "https://app.whistle.com/api/users/emails/{email}",
     "method": "GET",
-    "sortNum": 20000,
+    "sortNum": 16562.5,
     "created": "2023-02-04T01:20:59.414Z",
-    "modified": "2023-02-04T19:01:17.390Z",
+    "modified": "2023-02-05T19:57:24.340Z",
     "headers": [
       {
         "name": "Accept",
@@ -257,25 +257,12 @@
     "params": [
       {
         "name": "email",
-        "value": "abc",
+        "value": "admin%40whistle%2Ecom",
         "isPath": true
       }
     ],
-    "auth": {
-      "type": "bearer",
-      "bearer": "{{bearer}}"
-    },
     "tests": [],
-    "preReq": {
-      "runRequests": [
-        {
-          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
-          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
-          "triggerCondition": "run-var-empty",
-          "triggerValue": "{{bearer}}"
-        }
-      ]
-    }
+    "docs": "Usage notes: Replace `@` with `%40` and `.` with `%2E`\n\nHTTP 204 = Email Exists\n\nHTTP 404 = Email does not exist\n\nDoes NOT require a bearer."
   },
   {
     "_id": "e42f790f-beb7-4fc5-af56-382210eb2c56",
@@ -1302,20 +1289,46 @@
   {
     "_id": "068eb385-88db-4f7f-b7d8-0b05c29fcfe5",
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
-    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
-    "name": "Adventure Categories",
-    "url": "https://app.whistle.com/api/adventures/categories",
+    "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
+    "name": "Adventure Poi",
+    "url": "https://app.whistle.com/api/adventures/poi?latitude=37.768578&longitude=-92.286243&category=x&radius=25",
     "method": "GET",
-    "sortNum": 70000,
+    "sortNum": 50000,
     "created": "2023-02-04T01:56:38.115Z",
-    "modified": "2023-02-04T19:40:09.905Z",
+    "modified": "2023-02-05T19:24:54.841Z",
     "headers": [
       {
         "name": "Accept",
         "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Accept",
+        "value": "application/json",
+        "isDisabled": true
       }
     ],
-    "params": [],
+    "params": [
+      {
+        "name": "latitude",
+        "value": "37.768578",
+        "isPath": false
+      },
+      {
+        "name": "longitude",
+        "value": "-92.286243",
+        "isPath": false
+      },
+      {
+        "name": "category",
+        "value": "x",
+        "isPath": false
+      },
+      {
+        "name": "radius",
+        "value": "25",
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{bearer}}"
@@ -1708,6 +1721,174 @@
       }
     ],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "84ab9f06-8ddc-4354-958f-c244af53d9b0",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Adventure Categories",
+    "url": "https://app.whistle.com/api/adventures/categories",
+    "method": "GET",
+    "sortNum": 80000,
+    "created": "2023-02-05T19:21:56.518Z",
+    "modified": "2023-02-05T19:21:56.518Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "6ff3fd5b-7ecc-4cf0-95a2-9e9a7cbe7b3f",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
+    "name": "Adventure Poi Details",
+    "url": "https://app.whistle.com/api/adventures/poi/{poiId}?utc_offset=123",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-02-05T19:23:41.493Z",
+    "modified": "2023-02-05T19:24:41.466Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Accept",
+        "value": "application/json",
+        "isDisabled": true
+      }
+    ],
+    "params": [
+      {
+        "name": "poiId",
+        "value": "123",
+        "isPath": true
+      },
+      {
+        "name": "utc_offset",
+        "value": "123",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "34f194b5-07cc-4c48-9e88-436ab7774b2d",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Phone_Numbers",
+    "url": "https://app.whistle.com/api/phone_numbers",
+    "method": "POST",
+    "sortNum": 90000,
+    "created": "2023-02-05T19:34:14.515Z",
+    "modified": "2023-02-05T19:42:25.174Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": 0,\n  \"primary\": \"2259589010\",\n  \"number\": \"4102259595\",\n  \"verified\": true\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "77f48c78-b040-4bb3-9115-2bdf445a7759",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Phone_Numbers",
+    "url": "https://app.whistle.com/api/phone_numbers/{id}",
+    "method": "DELETE",
+    "sortNum": 100000,
+    "created": "2023-02-05T19:41:04.877Z",
+    "modified": "2023-02-05T19:42:26.546Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json",
+        "isDisabled": true
+      }
+    ],
+    "params": [
+      {
+        "name": "id",
+        "value": "281049",
+        "isPath": true
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{bearer}}"

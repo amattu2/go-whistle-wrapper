@@ -57,6 +57,30 @@ func TestMe(t *testing.T) {
 	assert.Equal(t, resp.Response.User.CurrentUser, true)
 }
 
+func TestCheckEmailExisting(t *testing.T) {
+	t.Parallel()
+
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	resp := c.CheckEmail("admin@whistle.com")
+
+	assert.Equal(t, http.StatusNoContent, resp.StatusCode) // Email exists
+	assert.Equal(t, resp.Error, nil)
+	assert.Equal(t, resp.Response, true)
+}
+
+func TestCheckEmailNonExisting(t *testing.T) {
+	t.Parallel()
+
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	resp := c.CheckEmail("thisuserwillneverexisthopefully19283201@whistle.com")
+
+	assert.Equal(t, http.StatusNotFound, resp.StatusCode) // Email does not exist
+	assert.Equal(t, resp.Error, nil)
+	assert.Equal(t, resp.Response, false)
+}
+
 func TestInvitationCodes(t *testing.T) {
 	t.Skip("TBD: No valid invitation codes known")
 }
