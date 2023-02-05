@@ -22,7 +22,6 @@
 package utils_test
 
 import (
-	"os"
 	"testing"
 
 	"github.com/amattu2/go-whistle-wrapper/utils"
@@ -31,7 +30,7 @@ import (
 
 func TestGetEnv(t *testing.T) {
 	// Set environment variable
-	os.Setenv("TEST_ENV_1", "test")
+	t.Setenv("TEST_ENV_1", "test")
 
 	assert.Equal(t, "test", utils.GetEnv("TEST_ENV_1", ""))
 }
