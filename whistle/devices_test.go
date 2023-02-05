@@ -1,5 +1,5 @@
 /*
- * Produced: Fri Feb 03 2023
+ * Produced: Sat Feb 04 2023
  * Author: Alec M.
  * GitHub: https://amattu.com/links/github
  * Copyright: (C) 2023 Alec M.
@@ -21,39 +21,28 @@
 
 package whistle_test
 
-import (
-	"testing"
+import "testing"
 
-	"github.com/amattu2/go-whistle-wrapper/utils"
-	"github.com/amattu2/go-whistle-wrapper/whistle"
-	"github.com/go-playground/assert/v2"
-)
-
-var (
-	Email    = utils.GetEnv("EMAIL", "")
-	Password = utils.GetEnv("PASSWORD", "")
-)
-
-func TestInvalidInit(t *testing.T) {
-	t.Parallel()
-
-	assert.PanicMatches(t, func() {
-		whistle.Initialize("", "")
-	}, "valid email and password are required")
+func TestDevice(t *testing.T) {
+	t.Skip("TBD: No valid device ID known")
 }
 
-func TestInvalidBearerInit(t *testing.T) {
-	t.Parallel()
-
-	assert.PanicMatches(t, func() {
-		whistle.InitializeBearer("")
-	}, "valid http bearer is required")
+func TestDeviceActivation(t *testing.T) {
+	t.Skip("TBD: No valid device ID known")
 }
 
-func TestInvalidTokenInit(t *testing.T) {
-	t.Parallel()
+func TestDevicePlans(t *testing.T) {
+	t.Skip("TBD: No valid device ID known")
+}
 
-	assert.PanicMatches(t, func() {
-		whistle.InitializeToken("")
-	}, "valid API token is required")
+func TestDeviceSubscription(t *testing.T) {
+	t.Skip("TBD: No valid device ID known")
+}
+
+func TestDeviceSubscriptionPreview(t *testing.T) {
+	t.Skip("TBD: No valid device ID known")
+}
+
+func TestDeviceUpgradePreview(t *testing.T) {
+	t.Skip("TBD: No valid device ID known")
 }

@@ -19,12 +19,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package utils
+package utils_test
 
 import (
 	"os"
 	"testing"
 
+	"github.com/amattu2/go-whistle-wrapper/utils"
 	"github.com/go-playground/assert/v2"
 )
 
@@ -32,9 +33,13 @@ func TestGetEnv(t *testing.T) {
 	// Set environment variable
 	os.Setenv("TEST_ENV_1", "test")
 
-	assert.Equal(t, "test", GetEnv("TEST_ENV_1", ""))
+	assert.Equal(t, "test", utils.GetEnv("TEST_ENV_1", ""))
 }
 
 func TestGetEnvFallback(t *testing.T) {
-	assert.Equal(t, "FB", GetEnv("TEST_ENV_2", "FB"))
+	assert.Equal(t, "FB", utils.GetEnv("TEST_ENV_2", "FB"))
+}
+
+func TestGetEnvNoArgs(t *testing.T) {
+	assert.Equal(t, "", utils.GetEnv("", ""))
 }

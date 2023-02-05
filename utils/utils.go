@@ -21,7 +21,9 @@
 
 package utils
 
-import "os"
+import (
+	"os"
+)
 
 // GetEnv attempts to get an environment variable, defaulting to a fallback
 //

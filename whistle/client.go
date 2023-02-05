@@ -35,19 +35,18 @@ const (
 	StagingEnv = "https://app-staging.whistle.com"
 )
 
+// ---------------------------------
+// Structures
+// ---------------------------------
+
 type Client struct {
-	// API Email
-	email string
+	// API Credentials
+	email, password string
 
-	// API Password
-	password string
+	// API Token/Bearer
+	token, bearer string
 
-	// API Token or HTTP Bearer
-	token  string
-	bearer string
-
-	// Environment
-	// ProdEnv or StagingEnv
+	// Environment (ProdEnv or StagingEnv)
 	Env string
 
 	// Timeout configures the request timeout
@@ -57,11 +56,69 @@ type Client struct {
 	UserAgent string
 }
 
-// Initialize creates a new client with the given email and password.
-//
-// email account email address
-// password account password
+type HttpResponse[T interface{}] struct {
+	// HTTP Status Code
+	StatusCode int `json:"status_code"`
+
+	// Embedded Error Message
+	Error error `json:"error"`
+
+	// Embedded Unmarshalled Response Struct
+	Response T `json:"response"`
+
+	// Embedded HTTP Response
+	Raw *http.Response `json:"raw"`
+}
+
+type TokenResponse struct {
+	Success  bool     `json:"success"`
+	Token    string   `json:"token"`
+	Messages []string `json:"messages"`
+}
+
+type BearerResponse struct {
+	AuthToken    string `json:"auth_token"`
+	RefreshToken string `json:"refresh_token"`
+	User         User   `json:"user"`
+}
+
+type Error struct {
+	Message string `json:"message"`
+	Code    string `json:"code"`
+	Field   string `json:"field"`
+}
+
+type User struct {
+	CreatedAt            string            `json:"created_at"`
+	CurrentUser          bool              `json:"current_user"`
+	Email                string            `json:"email"`
+	FirstName            string            `json:"first_name"`
+	ID                   int               `json:"id"`
+	LastName             string            `json:"last_name"`
+	ProfilePhotoUrl      string            `json:"profile_photo_url"`
+	ProfilePhotoUrlSizes map[string]string `json:"profile_photo_url_sizes"`
+	RealtimeChannel      RealtimeChannel   `json:"realtime_channel"`
+	Searchable           bool              `json:"searchable"`
+	SendMarketingEmails  bool              `json:"send_marketing_emails"`
+	UserActivations      string            `json:"user_activations"`
+	UserType             string            `json:"user_type"`
+	Username             string            `json:"username"`
+}
+
+type RealtimeChannel struct {
+	Channel string `json:"channel"`
+	Service string `json:"service"`
+}
+
+// ---------------------------------
+// Functions
+// ---------------------------------
+
 func Initialize(email string, password string) *Client {
+	if email == "" || password == "" {
+		panic("valid email and password are required")
+	}
+
 	return &Client{
 		email:     email,
 		password:  password,
@@ -71,11 +128,11 @@ func Initialize(email string, password string) *Client {
 	}
 }
 
-// InitializeToken creates a new client with the given token.
-// Can be used to restore a session.
-//
-// token API token
 func InitializeToken(token string) *Client {
+	if token == "" {
+		panic("valid API token is required")
+	}
+
 	return &Client{
 		token:     token,
 		Timeout:   10 * time.Second,
@@ -84,11 +141,11 @@ func InitializeToken(token string) *Client {
 	}
 }
 
-// InitializeBearer creates a new client with the given bearer.
-// Can be used to restore a session.
-//
-// bearer HTTP Bearer
 func InitializeBearer(bearer string) *Client {
+	if bearer == "" {
+		panic("valid http bearer is required")
+	}
+
 	return &Client{
 		bearer:    bearer,
 		Timeout:   10 * time.Second,
@@ -97,7 +154,6 @@ func InitializeBearer(bearer string) *Client {
 	}
 }
 
-// Add a default set of headers to the request
 func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
 	// Add headers
 	request.Header.Set("User-Agent", c.UserAgent)
@@ -116,11 +172,6 @@ func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
 	}
 }
 
-// Get performs a GET request to the given path
-//
-// path API path
-// headers HTTP headers
-// addAuth whether to add authorization
 func (c *Client) get(path string, headers map[string]string, addAuth bool) (*http.Response, error) {
 	// Initialize the client
 	client := http.Client{}
@@ -133,7 +184,7 @@ func (c *Client) get(path string, headers map[string]string, addAuth bool) (*htt
 	}
 
 	// Add headers
-	c.addDefaultHeaders(request, true)
+	c.addDefaultHeaders(request, addAuth)
 	for key, value := range headers {
 		request.Header.Set(key, value)
 	}
@@ -141,12 +192,6 @@ func (c *Client) get(path string, headers map[string]string, addAuth bool) (*htt
 	return client.Do(request)
 }
 
-// Post performs a POST request to the given path
-//
-// path API path
-// headers HTTP headers
-// body HTTP body (JSON)
-// addAuth whether to add authorization
 func (c *Client) post(path string, headers map[string]string, body map[string]string, addAuth bool) (*http.Response, error) {
 	// Initialize the client
 	client := http.Client{}
@@ -168,12 +213,9 @@ func (c *Client) post(path string, headers map[string]string, body map[string]st
 	return client.Do(request)
 }
 
-// getToken returns the API token from a user's email and password
-//
-// Note: It is STRONGLY recommended to use getBearer instead
 func (c *Client) getToken() string {
 	// If token is empty, login and get token
-	if (c.token) == "" {
+	if c.token == "" && c.email != "" && c.password != "" {
 		data := map[string]string{
 			"email":    c.email,
 			"password": c.password,
@@ -205,10 +247,9 @@ func (c *Client) getToken() string {
 	return c.token
 }
 
-// getBearer returns the HTTP Bearer from a user's email and password
 func (c *Client) getBearer() string {
 	// If bearer is empty, login and get bearer
-	if (c.bearer) == "" {
+	if c.bearer == "" && c.email != "" && c.password != "" {
 		data := map[string]string{
 			"email":    c.email,
 			"password": c.password,
@@ -238,365 +279,4 @@ func (c *Client) getBearer() string {
 
 	// Return HTTP Bearer
 	return c.bearer
-}
-
-// Users returns a list of information about the authenticated user's account
-func (c Client) Users() (*UsersResponse, error) {
-	// Get data
-	resp, err := c.get("api/users", nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := UsersResponse{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-func (c Client) Me() (*MeResponse, error) {
-	// Get data
-	resp, err := c.get("api/users/me", nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := MeResponse{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Notifications returns a list of notifications for the authenticated user
-func (c Client) Notifications() (*NotificationsResponse, error) {
-	// Get data
-	resp, err := c.get("api/notifications", nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := NotificationsResponse{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Device returns information about a specific device registered
-//
-// serialNumber Device ID or serial number
-func (c Client) Device(serialNumber string) (*[]Device, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/devices/%s", serialNumber), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []Device{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Dogs returns a list of information about the authenticated user's dogs
-func (c Client) Dogs() (*[]Dog, error) {
-	// Get data
-	resp, err := c.get("api/dogs", nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []Dog{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Dog returns information about a specific dog
-//
-// dogId Dog ID
-func (c Client) Dog(dogId string) (*Dog, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s", dogId), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := Dog{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Highlights returns a list of highlights for a specific dog
-//
-// dogId Dog ID
-// highlightType Highlight type (TBD)
-func (c Client) Highlights(dogId string, highlightType string) (*[]Highlight, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/highlights?type=%s", dogId, highlightType), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []Highlight{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Dailies returns a list of daily details for a specific pet
-//
-// dogId Dog ID
-// limit Number of dailies to return
-func (c Client) Dailies(dogId string, limit int) (*[]Daily, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/dailies?count=%d", dogId, limit), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []Daily{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Daily returns information about a specific daily
-//
-// dogId Dog ID
-// dailyId Daily ID
-func (c Client) Daily(dogId string, dailyId string) (*Daily, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/dailies/%s", dogId, dailyId), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := Daily{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Timelines returns a list of timeline events for a specific dog
-//
-// dogId Dog ID
-// timelineId Timeline ID
-func (c Client) Timeline(dogId string, timelineId string) (*Timeline, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/timelines/%s", dogId, timelineId), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := Timeline{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// func (c Client) Statistics(dogId string, statType string) (*StatisticsResponse, error) {
-// 	// Get data
-// 	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats?type=%s", dogId, statType), nil, true)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	if resp.StatusCode != http.StatusOK {
-// 		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-// 	}
-
-// 	defer resp.Body.Close()
-
-// 	// Parse json response
-// 	body, _ := io.ReadAll(resp.Body)
-// 	result := StatisticsResponse{}
-// 	json.Unmarshal(body, &result)
-
-// 	return &result, nil
-// }
-
-// UsersPresent returns a list of users present with a specific dog
-//
-// dogId Dog ID
-//
-// Note: Unsure if this endpoint actually does anything
-func (c Client) UsersPresent(dogId string) (*UsersPresentResponse, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/users_present", dogId), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := UsersPresentResponse{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Goals returns a list of pre-set goals for a specific dog
-//
-// dogId Dog ID
-func (c Client) Goals(dogId string) (*[]Goal, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/goals", dogId), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []Goal{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// Averages returns a list of statistical averages for a specific dog
-//
-// dogId Dog ID
-func (c Client) Averages(dogId string) (*[]Average, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/averages", dogId), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []Average{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// DailyTotals returns a list of daily totals for a specific dog
-//
-// dogId Dog ID
-// startDate Start date for the daily total events
-func (c Client) DailyTotals(dogId string, startDate time.Time) (*[]DailyTotal, error) {
-	// Get data
-	resp, err := c.get(fmt.Sprintf("api/dogs/%s/stats/daily_totals?start_time=%s", dogId, startDate.Format("Y-m-d")), nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := []DailyTotal{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
-}
-
-// UsersCreditCard returns the abbreviated credit card details for the current user
-func (c Client) UsersCreditCard() (*CreditCard, error) {
-	// Get data
-	resp, err := c.get("api/users/credit_card", nil, true)
-	if err != nil {
-		return nil, err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
-	}
-
-	defer resp.Body.Close()
-
-	// Parse json response
-	body, _ := io.ReadAll(resp.Body)
-	result := CreditCard{}
-	json.Unmarshal(body, &result)
-
-	return &result, nil
 }

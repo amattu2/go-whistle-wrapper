@@ -32,7 +32,7 @@ The wrapper exposes two ways of instantiating a client.
   you can instantiate a new wrapper via
 
   ```go
-  whistle := whistle.InitializeBearer("API_TOKEN_HERE")
+  whistle, err := whistle.InitializeBearer("API_TOKEN_HERE")
   ```
 
   This is useful for cases where you want to reduce overhead on page reload.
@@ -48,7 +48,7 @@ The wrapper exposes two ways of instantiating a client.
   you can instantiate a new wrapper via
 
   ```go
-  whistle := whistle.InitializeToken("API_TOKEN_HERE")
+  whistle, err := whistle.InitializeToken("API_TOKEN_HERE")
   ```
 
   This is useful for cases where you want to reduce overhead on page reload.
@@ -62,7 +62,7 @@ The wrapper exposes two ways of instantiating a client.
   mobile app or on <https://app.Whistle.com>, you can instantiate a new wrapper via
 
   ```go
-  whistle := whistle.Initialize("EMAIL", "PASSWORD")
+  whistle, err := whistle.Initialize("EMAIL", "PASSWORD")
   ```
 
 </details>
@@ -91,77 +91,22 @@ The wrapper exposes two ways of instantiating a client.
 ## Methods
 
 **Important note**: The Whistle.com API REQUIRES a `Accept: application/vnd.whistle.com.v4+json`
-to be present in ALL REQUESTS otherwise it will return 404.
+header to be present in ALL REQUESTS otherwise it will return 404.
 
-<details>
-  <summary>Users</summary>
+### Users
 
-</details>
+### Devices
 
-<details>
-  <summary>Notifications</summary>
+### Breeds
 
-</details>
+### Pets
 
-<details>
-  <summary>Device</summary>
+### Miscellaneous
 
-</details>
+# Requirements
 
-<details>
-  <summary>Dogs</summary>
-
-</details>
-
-<details>
-  <summary>Dog(dogId)</summary>
-
-</details>
-
-<details>
-  <summary>Highlights(dogId, type)</summary>
-
-</details>
-
-<details>
-  <summary>Dailies(dogId, limit)</summary>
-
-</details>
-
-<details>
-  <summary>Daily(dogId, dailyId)</summary>
-
-</details>
-
-<details>
-  <summary>Timeline(dogId, timelineId)</summary>
-
-</details>
-
-<details>
-  <summary>UsersPresent(dogId)</summary>
-
-</details>
-
-<details>
-  <summary>Goals(dogId)</summary>
-
-</details>
-
-<details>
-  <summary>Averages(dogId)</summary>
-
-</details>
-
-<details>
-  <summary>DailyTotals(dogId, startDate)</summary>
-
-</details>
-
-<details>
-  <summary>UsersCreditCard</summary>
-
-</details>
+- Go 1.18+ (Required for Generics)
+- <https://whistle.com> account
 
 # Credits
 
@@ -179,9 +124,8 @@ These are the remaining action items of this project.
 Some of them are on hold until I have a device to test with.
 
 - [X] Switch to Bearer usage
-- [ ] Implement all of the newly discovered endpoints (see Thunder Client)
-- [ ] Test cases
+- [X] Implement all of the newly discovered endpoints (see Thunder Client)
+- [X] Test cases
 - [ ] Handle API key expiration or renewal
-- [ ] Finish README.md usage docs
-- [ ] Fill in missing struct definitions
-- [ ] Add support for the async event pusher service (See "realtime_channel")
+- [ ] Finish README.md usage documentation
+- [ ] Add support for the async event pusher service (See `realtime_channel`)

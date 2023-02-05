@@ -1,5 +1,5 @@
 /*
- * Produced: Fri Feb 03 2023
+ * Produced: Sat Feb 04 2023
  * Author: Alec M.
  * GitHub: https://amattu.com/links/github
  * Copyright: (C) 2023 Alec M.
@@ -22,6 +22,7 @@
 package whistle_test
 
 import (
+	"net/http"
 	"testing"
 
 	"github.com/amattu2/go-whistle-wrapper/utils"
@@ -29,31 +30,45 @@ import (
 	"github.com/go-playground/assert/v2"
 )
 
-var (
-	Email    = utils.GetEnv("EMAIL", "")
-	Password = utils.GetEnv("PASSWORD", "")
-)
-
-func TestInvalidInit(t *testing.T) {
+func TestDogBreeds(t *testing.T) {
 	t.Parallel()
 
-	assert.PanicMatches(t, func() {
-		whistle.Initialize("", "")
-	}, "valid email and password are required")
+	// Create new client
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	// Get data
+	resp := c.Breeds("dogs")
+
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, resp.Error, nil)
+	assert.NotEqual(t, resp.Response, nil)
+	assert.NotEqual(t, len(resp.Response.Breeds), 0)
 }
 
-func TestInvalidBearerInit(t *testing.T) {
+func TestCatBreeds(t *testing.T) {
 	t.Parallel()
 
-	assert.PanicMatches(t, func() {
-		whistle.InitializeBearer("")
-	}, "valid http bearer is required")
+	// Create new client
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	// Get data
+	resp := c.Breeds("cats")
+
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, resp.Error, nil)
+	assert.NotEqual(t, resp, nil)
+	assert.NotEqual(t, len(resp.Response.Breeds), 0)
 }
 
-func TestInvalidTokenInit(t *testing.T) {
+func TestBreedsInvalid(t *testing.T) {
 	t.Parallel()
 
-	assert.PanicMatches(t, func() {
-		whistle.InitializeToken("")
-	}, "valid API token is required")
+	// Create new client
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	// Get data
+	resp := c.Breeds("rhinos")
+
+	assert.NotEqual(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, nil, resp.Error) // No internal error, only API error
 }
