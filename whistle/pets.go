@@ -23,6 +23,7 @@ package whistle
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -401,8 +402,8 @@ func (c Client) PetHealthTrends(petId string) *HttpResponse[PetHealthTrendsRespo
 }
 
 // PetHealthGraphs returns graphical information about a pet's health based on the specified trend
-func (c Client) PetHealthGraphs(petId string, trend string) *HttpResponse[PetHealthGraphsResponse] {
-	resp, err := c.get("api/pets/"+petId+"/health/graphs/"+trend, nil, true)
+func (c Client) PetHealthGraphs(petId string, trend string, days int) *HttpResponse[PetHealthGraphsResponse] {
+	resp, err := c.get(fmt.Sprintf("api/pets/%s/health/graphs/%s?num_of_days=%d", petId, trend, days), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
 		return &HttpResponse[PetHealthGraphsResponse]{
 			StatusCode: resp.StatusCode,

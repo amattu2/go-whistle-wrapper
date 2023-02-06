@@ -71,13 +71,17 @@ The wrapper exposes two ways of instantiating a client.
   <summary>Manually</summary>
 
   In the event that you have an advanced need, you may also
-  initialize the wrapper directly. You only need `email`/`password`, `token`,
-  or `bearer`, but never all 3 together.
+  initialize the wrapper directly. You only need `email`/`password`,
+  `email`/`refresh_token`, `token`, or `bearer`, but never all 4 options together.
+
+  If you provide a `email` and `password` or `email` and `refresh_token`,
+  a HTTP bearer will automatically be requested and stored on your first API query.
 
   ```go
     client := whistle.Client{
       email: "ABC", // Option 1
-      password: "XYZ", // Option 1
+      password: "XYZ", // Option 1-1
+      refreshToken: "XYZ", // Option 1-2
       token: "123", // Option 2
       bearer: "abc12932", // Option 3
       Timeout: 3000,
@@ -91,9 +95,13 @@ The wrapper exposes two ways of instantiating a client.
 ## Methods
 
 **Important note**: The Whistle.com API REQUIRES a `Accept: application/vnd.whistle.com.v4+json`
-header to be present in ALL REQUESTS otherwise it will return 404.
+header to be present in almost ALL REQUESTS otherwise it will return 404.
+Occasionally a endpoint (usually a deprecated one) will accept `application/json`.
 
 ### Users
+
+This section covers all implementations relating to the REST API surrounding users
+(`/api/users`).
 
 <details>
   <summary>DEPRECATED: Users()</summary>
@@ -138,6 +146,7 @@ header to be present in ALL REQUESTS otherwise it will return 404.
   Used to check if an email exists within the database.
 
   HTTP 404 - Non existing
+
   HTTP 204 - User exists
 
   ```go
@@ -262,6 +271,9 @@ header to be present in ALL REQUESTS otherwise it will return 404.
 </details>
 
 ### Devices
+
+This portion of the document outlines the implementations of the smart collar
+REST api endpoints.
 
 <details>
   <summary>Device(deviceId string)</summary>
@@ -390,6 +402,8 @@ header to be present in ALL REQUESTS otherwise it will return 404.
 </details>
 
 ### Breeds
+
+This section related to all of the endpoints (currently only 1) relating to animal breeds.
 
 <details>
   <summary>Breeds(animal string)</summary>

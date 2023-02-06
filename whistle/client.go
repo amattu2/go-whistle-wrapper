@@ -37,9 +37,9 @@ const (
 
 type Client struct {
 	// API Credentials
-	email, password string
+	email, password, refreshToken string
 
-	// API Token/Bearer
+	// API Token or HTTP Bearer
 	token, bearer string
 
 	// Environment (ProdEnv or StagingEnv)
@@ -118,6 +118,20 @@ func Initialize(email string, password string) *Client {
 		Timeout:   10 * time.Second,
 		Env:       ProdEnv,
 		UserAgent: "Mozilla/5.0 (X11; Linux x86_64)",
+	}
+}
+
+func InitializeRefreshToken(email string, refreshToken string) *Client {
+	if email == "" || refreshToken == "" {
+		panic("valid email and refresh token are required")
+	}
+
+	return &Client{
+		email:        email,
+		refreshToken: refreshToken,
+		Timeout:      10 * time.Second,
+		Env:          ProdEnv,
+		UserAgent:    "Mozilla/5.0 (X11; Linux x86_64)",
 	}
 }
 
@@ -253,10 +267,14 @@ func (c *Client) getToken() string {
 // getBearer returns the HTTP bearer if it exists, otherwise it will login and return the bearer
 func (c *Client) getBearer() string {
 	// If bearer is empty, login and get bearer
-	if c.bearer == "" && c.email != "" && c.password != "" {
+	if c.bearer == "" && c.email != "" && (c.password != "" || c.refreshToken != "") {
 		data := map[string]string{
-			"email":    c.email,
-			"password": c.password,
+			"email": c.email,
+		}
+		if c.password != "" {
+			data["password"] = c.password
+		} else {
+			data["refresh_token"] = c.refreshToken
 		}
 
 		resp, err := c.post("api/login", nil, data, false)

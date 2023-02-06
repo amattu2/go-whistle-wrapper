@@ -57,3 +57,11 @@ func TestInvalidTokenInit(t *testing.T) {
 		whistle.InitializeToken("")
 	}, "valid API token is required")
 }
+
+func TestInvalidRefreshInit(t *testing.T) {
+	t.Parallel()
+
+	assert.PanicMatches(t, func() {
+		whistle.InitializeRefreshToken("abc@gmail.com", "")
+	}, "valid email and refresh token are required")
+}
