@@ -1,16 +1,16 @@
 name: Go Tests
 
 on:
+  schedule:
+    - cron: "0 0 1 * *"
   push:
     branches: ["master"]
-    paths-ignore:
-      - ".vscode/**"
-      - ".github/**"
+    paths:
+      - "**.go"
   pull_request:
     branches: ["master"]
-    paths-ignore:
-      - ".vscode/**"
-      - ".github/**"
+    paths:
+      - "**.go"
 
 env:
   WHISTLE_BEARER: ${{ secrets.WHISTLE_BEARER }}

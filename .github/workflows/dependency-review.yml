@@ -1,6 +1,17 @@
 name: Dependency Review
 
-on: [pull_request]
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "**.mod"
+      - "**.sum"
+  pull_request:
+    branches: ["master"]
+    paths:
+      - "**.mod"
+      - "**.sum"
+
 
 permissions:
   contents: read
