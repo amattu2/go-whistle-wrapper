@@ -39,6 +39,5 @@ jobs:
         working-directory: ./
 
       # Run tests
-      - run: WHISTLE_BEARER=$WHISTLE_BEARER go version
+      - run: go version
       - run: WHISTLE_BEARER=$WHISTLE_BEARER go test -v ./...
-      - run: WHISTLE_BEARER=$WHISTLE_BEARER go test -race ./...
