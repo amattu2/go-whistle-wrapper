@@ -21,28 +21,52 @@
 
 package whistle_test
 
-import "testing"
+import (
+	"net/http"
+	"testing"
+
+	"github.com/amattu2/go-whistle-wrapper/utils"
+	"github.com/amattu2/go-whistle-wrapper/whistle"
+	"github.com/go-playground/assert/v2"
+)
 
 func TestDevice(t *testing.T) {
-	t.Skip("TBD: No valid device ID known")
+	t.Parallel()
+
+	// Create new client
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	// Get data
+	resp := c.Device(utils.GetEnv("WHISTLE_DEVICE_ID", ""))
+	device := resp.Response.Device
+
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, resp.Error, nil)
+	assert.NotEqual(t, resp, nil)
+	assert.Equal(t, device.SerialNumber, utils.GetEnv("WHISTLE_DEVICE_ID", ""))
+	assert.Equal(t, device.ModelId, "W05")
 }
 
 func TestDeviceActivation(t *testing.T) {
-	t.Skip("TBD: No valid device ID known")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestDevicePlans(t *testing.T) {
-	t.Skip("TBD: No valid device ID known")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestDeviceSubscription(t *testing.T) {
-	t.Skip("TBD: No valid device ID known")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestDeviceSubscriptionPreview(t *testing.T) {
-	t.Skip("TBD: No valid device ID known")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestDeviceUpgradePreview(t *testing.T) {
-	t.Skip("TBD: No valid device ID known")
+	t.Skip("Cannot test due to dependence on changing states")
+}
+
+func TestDeviceWifiNetworks(t *testing.T) {
+	t.Skip("Cannot test due to dependence on changing states")
 }

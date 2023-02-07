@@ -57,6 +57,25 @@ type Notification struct {
 }
 
 type Place struct {
+	ID            int         `json:"id"`
+	Name          string      `json:"name"`
+	Address       string      `json:"address"`
+	Latitude      string      `json:"latitude"`
+	Longitude     string      `json:"longitude"`
+	RadiusMeters  float64     `json:"radius_meters"`
+	Shape         string      `json:"shape"`
+	Outline       []LatLon    `json:"outline"`
+	CreatedByUser bool        `json:"created_by_user"`
+	PetIds        []int       `json:"pet_ids"`
+	WifiNetwork   WifiNetwork `json:"wifi_network"`
+}
+
+type LatLon struct {
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
+}
+
+type Coupon struct {
 }
 
 // Notifications returns a list of the pending notifications for the user.
@@ -109,7 +128,7 @@ func (c Client) PetFoods(foodType string) *HttpResponse[[]PetFood] {
 	}
 }
 
-// Todo: Figure out what arguments are required
+// ReverseGeocode returns the best address guess of a given latitude and longitude
 func (c Client) ReverseGeocode(lat string, lon string) *HttpResponse[ReverseGeocodeResponse] {
 	resp, err := c.get(fmt.Sprintf("api/reverse_geocode?latitude=%s&longitude=%s", lat, lon), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {

@@ -71,7 +71,7 @@
     ],
     "settings": {
       "runOptions": {
-        "delay": 100,
+        "delay": 200,
         "iterations": 1,
         "dataFilePath": ""
       }

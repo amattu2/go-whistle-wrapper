@@ -31,6 +31,7 @@ import (
 
 type InvitationCodeResponse struct {
 	Errors []Error `json:"errors"`
+	Pet    Pet     `json:"pet"`
 }
 
 type ApplicationStateResponse struct {
@@ -43,7 +44,14 @@ type SubscriptionsResponse struct {
 }
 
 type CancellationReasonsResponse struct {
-	Errors []Error `json:"errors"`
+	Errors              []Error              `json:"errors"`
+	CancellationReasons []CancellationReason `json:"cancellation_reasons"`
+}
+
+type CancellationReason struct {
+	ID          int    `json:"id"`
+	ShortName   string `json:"short_name"`
+	Description string `json:"description"`
 }
 
 type CancellationPreviewResponse struct {
@@ -69,6 +77,13 @@ type UsersResponse struct {
 	SendMarketingEmails    bool                 `json:"send_marketing_emails"`
 	UserType               string               `json:"user_type"`
 	Username               string               `json:"username"`
+	UserActivations        []UserActivation     `json:"user_activations"`
+}
+
+type UserActivation struct {
+	DeviceSerial string          `json:"device_serial"`
+	Status       string          `json:"status"`
+	Events       map[string]bool `json:"events"`
 }
 
 type MeResponse struct {
@@ -102,6 +117,17 @@ type CreditCard struct {
 }
 
 type Subscription struct {
+	ID                      string `json:"id"`
+	CanceledAt              string `json:"canceled_at"`
+	CancellationEffectiveOn string `json:"cancellation_effective_on"`
+	CancelAtEndOfContract   bool   `json:"cancel_at_end_of_contract"`
+	User                    User   `json:"user"`
+	PaidThrough             string `json:"paid_through"`
+	Plan                    Plan   `json:"plan"`
+	Status                  string `json:"status"`
+	Legacy                  bool   `json:"legacy"`
+	PetId                   string `json:"pet_id"`
+	Coupon                  Coupon `json:"coupon"`
 }
 
 type PartnerService struct {
@@ -196,7 +222,7 @@ func (c Client) CheckEmail(email string) *HttpResponse[bool] {
 	}
 }
 
-// Todo: Figure out what this does
+// InvitationCodes returns the pet information for the provided invitation code
 func (c Client) InvitationCodes(code string) *HttpResponse[InvitationCodeResponse] {
 	resp, err := c.get(fmt.Sprintf("api/users/invitation_codes/%s", code), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {
@@ -323,7 +349,7 @@ func (c Client) CancellationPreview(subId string) *HttpResponse[CancellationPrev
 	}
 }
 
-// Todo: Figure out what this does
+// CancellationReasons returns a list of reasons why a user may be cancelling their subscription
 func (c Client) CancellationReasons(subId string) *HttpResponse[CancellationReasonsResponse] {
 	resp, err := c.get(fmt.Sprintf("api/users/subscriptions/%s/cancellation/preview", subId), nil, true)
 	if err != nil || resp.StatusCode != http.StatusOK {

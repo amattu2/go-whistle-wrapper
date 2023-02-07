@@ -24,14 +24,8 @@ package whistle_test
 import (
 	"testing"
 
-	"github.com/amattu2/go-whistle-wrapper/utils"
 	"github.com/amattu2/go-whistle-wrapper/whistle"
 	"github.com/go-playground/assert/v2"
-)
-
-var (
-	Email    = utils.GetEnv("EMAIL", "")
-	Password = utils.GetEnv("PASSWORD", "")
 )
 
 func TestInvalidInit(t *testing.T) {

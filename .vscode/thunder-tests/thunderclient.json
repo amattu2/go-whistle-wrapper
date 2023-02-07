@@ -187,7 +187,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-02-03T22:39:27.697Z",
-    "modified": "2023-02-04T01:20:02.866Z",
+    "modified": "2023-02-06T18:38:35.250Z",
     "headers": [
       {
         "name": "Accept",
@@ -197,7 +197,7 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": true
       }
     ],
@@ -285,7 +285,7 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-02-04T01:24:03.793Z",
-    "modified": "2023-02-04T01:24:27.019Z",
+    "modified": "2023-02-06T19:14:59.256Z",
     "headers": [
       {
         "name": "Accept",
@@ -295,7 +295,7 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": true
       }
     ],
@@ -324,7 +324,7 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T01:24:05.509Z",
-    "modified": "2023-02-04T01:24:48.738Z",
+    "modified": "2023-02-06T18:39:38.197Z",
     "headers": [
       {
         "name": "Accept",
@@ -334,7 +334,7 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": true
       }
     ],
@@ -363,7 +363,7 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-02-04T01:24:07.216Z",
-    "modified": "2023-02-04T01:25:02.058Z",
+    "modified": "2023-02-06T18:39:19.829Z",
     "headers": [
       {
         "name": "Accept",
@@ -373,7 +373,7 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": true
       }
     ],
@@ -402,7 +402,7 @@
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-02-04T01:24:08.846Z",
-    "modified": "2023-02-05T20:04:51.363Z",
+    "modified": "2023-02-06T18:40:07.810Z",
     "headers": [
       {
         "name": "Accept",
@@ -416,12 +416,12 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": true
       },
       {
         "name": "planId",
-        "value": "aa",
+        "value": "health-gps-one-year-plan",
         "isPath": true
       },
       {
@@ -449,13 +449,13 @@
   {
     "_id": "8931c88f-afde-4a37-9d6f-38bc7fb6c908",
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
-    "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
     "name": "Wifi Networks",
     "url": "https://app.whistle.com/api/devices/{deviceId}/wifi_networks",
     "method": "GET",
-    "sortNum": 40000,
+    "sortNum": 75000,
     "created": "2023-02-04T01:26:31.450Z",
-    "modified": "2023-02-04T20:11:56.637Z",
+    "modified": "2023-02-06T18:41:49.844Z",
     "headers": [
       {
         "name": "Accept",
@@ -465,7 +465,7 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "sss",
+        "value": "{{deviceId}}",
         "isPath": true
       }
     ],
@@ -490,11 +490,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
     "name": "Upgrade Preview",
-    "url": "https://app.whistle.com/api/devices/{deviceId}/upgrade/preview?serial_number=abc&plan_id=abc&coupon_id=abc",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/upgrade/preview?serial_number={{deviceId}}&plan_id=health-gps-one-year-plan",
     "method": "GET",
     "sortNum": 65000,
     "created": "2023-02-04T01:26:58.643Z",
-    "modified": "2023-02-05T20:06:03.876Z",
+    "modified": "2023-02-06T19:32:07.902Z",
     "headers": [
       {
         "name": "Accept",
@@ -504,22 +504,23 @@
     "params": [
       {
         "name": "deviceId",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": true
       },
       {
         "name": "serial_number",
-        "value": "abc",
+        "value": "{{deviceId}}",
         "isPath": false
       },
       {
         "name": "plan_id",
-        "value": "abc",
+        "value": "health-gps-one-year-plan",
         "isPath": false
       },
       {
         "name": "coupon_id",
         "value": "abc",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -647,7 +648,7 @@
     "method": "GET",
     "sortNum": 18125,
     "created": "2023-02-04T01:31:02.680Z",
-    "modified": "2023-02-04T18:55:10.019Z",
+    "modified": "2023-02-06T18:48:46.420Z",
     "headers": [
       {
         "name": "Accept",
@@ -657,7 +658,7 @@
     "params": [
       {
         "name": "code",
-        "value": "abc",
+        "value": "{{inviteCode}}",
         "isPath": true
       }
     ],
@@ -686,7 +687,7 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T01:34:18.474Z",
-    "modified": "2023-02-04T01:48:04.438Z",
+    "modified": "2023-02-06T20:45:24.712Z",
     "headers": [
       {
         "name": "Accept",
@@ -696,7 +697,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -723,9 +724,9 @@
     "name": "Pets Health Graphs",
     "url": "https://app.whistle.com/api/pets/{petId}/health/graphs/{trend_type}?num_of_days=2",
     "method": "GET",
-    "sortNum": 50000,
+    "sortNum": 40000,
     "created": "2023-02-04T01:34:23.517Z",
-    "modified": "2023-02-06T12:58:52.000Z",
+    "modified": "2023-02-06T22:51:53.018Z",
     "headers": [
       {
         "name": "Accept",
@@ -735,7 +736,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       },
       {
@@ -754,7 +755,7 @@
       "bearer": "{{bearer}}"
     },
     "tests": [],
-    "docs": "Known types include: eating_events, sleeping",
+    "docs": "Known types include: eating_events, sleeping, scratching",
     "preReq": {
       "runRequests": [
         {
@@ -775,7 +776,7 @@
     "method": "GET",
     "sortNum": 25000,
     "created": "2023-02-04T01:34:25.313Z",
-    "modified": "2023-02-04T01:41:14.368Z",
+    "modified": "2023-02-06T20:44:40.520Z",
     "headers": [
       {
         "name": "Accept",
@@ -785,12 +786,12 @@
     "params": [
       {
         "name": "petId",
-        "value": "",
+        "value": "{{petId}}",
         "isPath": true
       },
       {
         "name": "dayId",
-        "value": "",
+        "value": "19394",
         "isPath": true
       }
     ],
@@ -819,7 +820,7 @@
     "method": "GET",
     "sortNum": 22500,
     "created": "2023-02-04T01:34:27.682Z",
-    "modified": "2023-02-04T01:40:37.784Z",
+    "modified": "2023-02-06T20:41:11.098Z",
     "headers": [
       {
         "name": "Accept",
@@ -829,12 +830,12 @@
     "params": [
       {
         "name": "petId",
-        "value": "",
+        "value": "{{petId}}",
         "isPath": true
       },
       {
         "name": "dayId",
-        "value": "",
+        "value": "19394",
         "isPath": true
       }
     ],
@@ -863,7 +864,7 @@
     "method": "GET",
     "sortNum": 21250,
     "created": "2023-02-04T01:34:29.108Z",
-    "modified": "2023-02-04T01:40:12.992Z",
+    "modified": "2023-02-06T20:36:36.200Z",
     "headers": [
       {
         "name": "Accept",
@@ -873,7 +874,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -900,9 +901,9 @@
     "name": "Pet Stats",
     "url": "https://app.whistle.com/api/pets/{petId}/stats",
     "method": "GET",
-    "sortNum": 20625,
+    "sortNum": 20781.3,
     "created": "2023-02-04T01:34:30.603Z",
-    "modified": "2023-02-04T01:39:34.080Z",
+    "modified": "2023-02-07T00:10:50.585Z",
     "headers": [
       {
         "name": "Accept",
@@ -912,7 +913,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -941,7 +942,7 @@
     "method": "GET",
     "sortNum": 20312.5,
     "created": "2023-02-04T01:34:32.680Z",
-    "modified": "2023-02-04T01:37:31.921Z",
+    "modified": "2023-02-06T20:29:43.131Z",
     "headers": [
       {
         "name": "Accept",
@@ -951,7 +952,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -976,11 +977,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
     "name": "Pet Whereabouts",
-    "url": "https://app.whistle.com/api/pets/{petId}/whereabouts",
+    "url": "https://app.whistle.com/api/pets/{petId}/whereabouts?start_time=2022-03-01&end_time=2023-03-01",
     "method": "GET",
     "sortNum": 20156.3,
     "created": "2023-02-04T01:34:35.415Z",
-    "modified": "2023-02-04T01:36:48.832Z",
+    "modified": "2023-02-06T20:20:24.974Z",
     "headers": [
       {
         "name": "Accept",
@@ -990,8 +991,24 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
+      },
+      {
+        "name": "start_time",
+        "value": "2022-03-01",
+        "isPath": false
+      },
+      {
+        "name": "end_time",
+        "value": "2023-03-01",
+        "isPath": false
+      },
+      {
+        "name": "exclude_key",
+        "value": "",
+        "isDisabled": true,
+        "isPath": false
       }
     ],
     "auth": {
@@ -1019,7 +1036,7 @@
     "method": "GET",
     "sortNum": 20078.2,
     "created": "2023-02-04T01:34:36.633Z",
-    "modified": "2023-02-04T01:36:17.185Z",
+    "modified": "2023-02-06T18:48:10.531Z",
     "headers": [
       {
         "name": "Accept",
@@ -1029,7 +1046,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -1091,7 +1108,7 @@
     "method": "GET",
     "sortNum": 20058.7,
     "created": "2023-02-04T01:34:39.265Z",
-    "modified": "2023-02-04T01:36:28.619Z",
+    "modified": "2023-02-06T21:56:03.085Z",
     "headers": [
       {
         "name": "Accept",
@@ -1101,7 +1118,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -1130,7 +1147,7 @@
     "method": "GET",
     "sortNum": 60000,
     "created": "2023-02-04T01:50:50.746Z",
-    "modified": "2023-02-04T01:52:34.646Z",
+    "modified": "2023-02-06T20:51:21.373Z",
     "headers": [
       {
         "name": "Accept",
@@ -1140,7 +1157,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -1165,11 +1182,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
     "name": "Task Occurences",
-    "url": "https://app.whistle.com/api/pets/{petId}/task_occurrences?type=complete",
+    "url": "https://app.whistle.com/api/pets/{petId}/task_occurrences?type=incomplete",
     "method": "GET",
     "sortNum": 70000,
     "created": "2023-02-04T01:51:04.923Z",
-    "modified": "2023-02-06T13:02:06.291Z",
+    "modified": "2023-02-06T20:54:17.978Z",
     "headers": [
       {
         "name": "Accept",
@@ -1179,18 +1196,18 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       },
       {
         "name": "type",
         "value": "incomplete",
-        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "type",
         "value": "complete",
+        "isDisabled": true,
         "isPath": false
       },
       {
@@ -1232,7 +1249,7 @@
     "method": "GET",
     "sortNum": 65000,
     "created": "2023-02-04T01:51:06.886Z",
-    "modified": "2023-02-04T01:54:54.840Z",
+    "modified": "2023-02-06T20:52:26.848Z",
     "headers": [
       {
         "name": "Accept",
@@ -1242,7 +1259,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -1271,7 +1288,7 @@
     "method": "GET",
     "sortNum": 20234.4,
     "created": "2023-02-04T01:51:08.951Z",
-    "modified": "2023-02-05T14:44:58.068Z",
+    "modified": "2023-02-06T20:29:13.923Z",
     "headers": [
       {
         "name": "Accept",
@@ -1281,7 +1298,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       }
     ],
@@ -1310,7 +1327,7 @@
     "method": "GET",
     "sortNum": 67500,
     "created": "2023-02-04T01:55:40.328Z",
-    "modified": "2023-02-05T14:38:32.753Z",
+    "modified": "2023-02-06T20:52:56.785Z",
     "headers": [
       {
         "name": "Accept",
@@ -1320,7 +1337,7 @@
     "params": [
       {
         "name": "petId",
-        "value": "abc",
+        "value": "{{petId}}",
         "isPath": true
       },
       {
@@ -1555,11 +1572,11 @@
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
     "name": "Coupon",
-    "url": "https://app.whistle.com/api/coupons/{couponId}?plan_id=abc",
+    "url": "https://app.whistle.com/api/coupons/{couponId}?plan_id=health-gps-one-year-plan",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T02:02:15.831Z",
-    "modified": "2023-02-05T20:06:31.092Z",
+    "modified": "2023-02-06T19:50:46.686Z",
     "headers": [
       {
         "name": "Accept",
@@ -1574,7 +1591,7 @@
       },
       {
         "name": "plan_id",
-        "value": "abc",
+        "value": "health-gps-one-year-plan",
         "isPath": false
       }
     ],
@@ -1648,7 +1665,7 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T02:02:57.797Z",
-    "modified": "2023-02-05T19:08:29.749Z",
+    "modified": "2023-02-06T22:49:34.606Z",
     "headers": [
       {
         "name": "Accept",
@@ -1672,7 +1689,6 @@
       "bearer": "{{bearer}}"
     },
     "tests": [],
-    "docs": "TBD: Need to determine the parameters",
     "preReq": {
       "runRequests": [
         {
@@ -1948,6 +1964,87 @@
         "isPath": true
       }
     ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "3177709c-3e62-49a1-8aa0-7a45d31c2e41",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "e68ef0e7-7fd7-41a7-a2b4-617a0924d5b5",
+    "name": "Pusher Auth",
+    "url": "https://app.whistle.com/api/pusher/auth?channel_name=private-user-123&socket_id=123.456",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-02-05T23:00:11.648Z",
+    "modified": "2023-02-06T00:44:46.621Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "channel_name",
+        "value": "private-user-123",
+        "isPath": false
+      },
+      {
+        "name": "socket_id",
+        "value": "123.456",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "70164d52-0056-487f-bf99-8845950cceab",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "name": "Firmware_Updates",
+    "url": "https://app.whistle.com/api/users/firmware_updates",
+    "method": "GET",
+    "sortNum": 19062.5,
+    "created": "2023-02-06T12:56:11.185Z",
+    "modified": "2023-02-06T12:56:46.586Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "{{bearer}}"

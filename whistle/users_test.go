@@ -82,7 +82,7 @@ func TestCheckEmailNonExisting(t *testing.T) {
 }
 
 func TestInvitationCodes(t *testing.T) {
-	t.Skip("TBD: No valid invitation codes known")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestApplicationState(t *testing.T) {
@@ -97,7 +97,7 @@ func TestApplicationState(t *testing.T) {
 	assert.NotEqual(t, resp.Response, nil)
 	assert.NotEqual(t, resp.Response.ApplicationState, nil)
 
-	t.Skip("TBD: No known states to test against")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestCreditCard(t *testing.T) {
@@ -111,7 +111,7 @@ func TestCreditCard(t *testing.T) {
 	assert.Equal(t, resp.Error, nil)
 	assert.NotEqual(t, resp.Response.LastFour, nil)
 
-	t.Skip("TBD: No credit cards tied to account to test")
+	t.Skip("Cannot test due to dependence on changing states")
 }
 
 func TestSubscriptions(t *testing.T) {
@@ -127,5 +127,5 @@ func TestSubscriptions(t *testing.T) {
 	assert.NotEqual(t, resp.Response.Subscriptions, nil)
 	assert.NotEqual(t, resp.Response.PartnerServices, nil)
 
-	t.Skip("TBD: No subscriptions tied to account to test")
+	t.Skip("Cannot test due to dependence on changing states")
 }

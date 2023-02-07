@@ -115,9 +115,30 @@ func TestReverseGeocode(t *testing.T) {
 }
 
 func TestPlaces(t *testing.T) {
-	t.Skip("TBD: No data returned")
+	t.Parallel()
+
+	client := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	resp := client.Places()
+
+	assert.Equal(t, nil, resp.Error)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.NotEqual(t, len(resp.Response[0].PetIds), 0)
+	if len(resp.Response) <= 0 {
+		t.Errorf("Expected at least one place, got %d", len(resp.Response))
+	}
+	if len(resp.Response[0].Outline) <= 0 {
+		t.Error("Expected at least one outline bound set, got none")
+	}
 }
 
 func TestAdventureCategories(t *testing.T) {
-	t.Skip("TBD: No data returned")
+	t.Parallel()
+
+	client := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	resp := client.AdventureCategories()
+
+	assert.Equal(t, nil, resp.Error)
+	assert.Equal(t, http.StatusNoContent, resp.StatusCode)
 }
