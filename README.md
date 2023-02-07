@@ -36,7 +36,7 @@ The wrapper exposes two ways of instantiating a client.
   you can instantiate a new wrapper via
 
   ```go
-  whistle, err := whistle.InitializeBearer("API_TOKEN_HERE")
+  whistle := whistle.InitializeBearer("API_TOKEN_HERE")
   ```
 
   This is useful for cases where you want to reduce overhead on page reload.
@@ -52,7 +52,7 @@ The wrapper exposes two ways of instantiating a client.
   you can instantiate a new wrapper via
 
   ```go
-  whistle, err := whistle.InitializeToken("API_TOKEN_HERE")
+  whistle := whistle.InitializeToken("API_TOKEN_HERE")
   ```
 
   This is useful for cases where you want to reduce overhead on page reload.
@@ -66,7 +66,21 @@ The wrapper exposes two ways of instantiating a client.
   mobile app or on <https://app.Whistle.com>, you can instantiate a new wrapper via
 
   ```go
-  whistle, err := whistle.Initialize("EMAIL", "PASSWORD")
+  whistle := whistle.Initialize("EMAIL", "PASSWORD")
+  ```
+
+</details>
+
+<details>
+  <summary>With Email/Refresh</summary>
+
+  If you don't have the HTTP bearer token cached, you can reauthenticate using your
+  email and refresh token credentials. This would be preferred over storing
+  a user's password in a cache somewhere. The refresh token is returned
+  during authentication with a email/password.
+
+  ```go
+  whistle := whistle.InitializeRefreshToken("EMAIL", "TOKEN")
   ```
 
 </details>
@@ -658,7 +672,7 @@ These are the operations relating to pets (cats/dogs/etc).
 </details>
 
 <details>
-  <summary>PetHealthTrends(petId string, trend string, days int)</summary>
+  <summary>PetHealthGraphs(petId string, trend string, days int)</summary>
 
   Provides data to generate a graph for the specified health trend.
   Days limits the number of observations to include.
