@@ -187,7 +187,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-02-03T22:39:27.697Z",
-    "modified": "2023-02-06T18:38:35.250Z",
+    "modified": "2023-02-07T13:22:13.732Z",
     "headers": [
       {
         "name": "Accept",
@@ -285,7 +285,7 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-02-04T01:24:03.793Z",
-    "modified": "2023-02-06T19:14:59.256Z",
+    "modified": "2023-02-07T13:22:15.685Z",
     "headers": [
       {
         "name": "Accept",
@@ -324,7 +324,7 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-02-04T01:24:05.509Z",
-    "modified": "2023-02-06T18:39:38.197Z",
+    "modified": "2023-02-07T13:22:18.203Z",
     "headers": [
       {
         "name": "Accept",
@@ -363,7 +363,7 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-02-04T01:24:07.216Z",
-    "modified": "2023-02-06T18:39:19.829Z",
+    "modified": "2023-02-07T13:22:19.100Z",
     "headers": [
       {
         "name": "Accept",
@@ -402,7 +402,7 @@
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-02-04T01:24:08.846Z",
-    "modified": "2023-02-06T18:40:07.810Z",
+    "modified": "2023-02-07T13:22:21.594Z",
     "headers": [
       {
         "name": "Accept",
@@ -453,9 +453,9 @@
     "name": "Wifi Networks",
     "url": "https://app.whistle.com/api/devices/{deviceId}/wifi_networks",
     "method": "GET",
-    "sortNum": 75000,
+    "sortNum": 70000,
     "created": "2023-02-04T01:26:31.450Z",
-    "modified": "2023-02-06T18:41:49.844Z",
+    "modified": "2023-02-07T13:22:23.714Z",
     "headers": [
       {
         "name": "Accept",
@@ -492,9 +492,9 @@
     "name": "Upgrade Preview",
     "url": "https://app.whistle.com/api/devices/{deviceId}/upgrade/preview?serial_number={{deviceId}}&plan_id=health-gps-one-year-plan",
     "method": "GET",
-    "sortNum": 65000,
+    "sortNum": 60000,
     "created": "2023-02-04T01:26:58.643Z",
-    "modified": "2023-02-06T19:32:07.902Z",
+    "modified": "2023-02-07T13:22:22.817Z",
     "headers": [
       {
         "name": "Accept",
@@ -2031,13 +2031,13 @@
   {
     "_id": "70164d52-0056-487f-bf99-8845950cceab",
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
-    "containerId": "148781e6-53bd-4bd6-8d5d-4c8f24929945",
+    "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
     "name": "Firmware_Updates",
-    "url": "https://app.whistle.com/api/users/firmware_updates",
+    "url": "https://app.whistle.com/api/users/me/firmware_updates",
     "method": "GET",
-    "sortNum": 19062.5,
+    "sortNum": 70000,
     "created": "2023-02-06T12:56:11.185Z",
-    "modified": "2023-02-06T12:56:46.586Z",
+    "modified": "2023-02-07T13:17:05.523Z",
     "headers": [
       {
         "name": "Accept",
