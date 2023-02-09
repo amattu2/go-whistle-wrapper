@@ -9,6 +9,8 @@ standard CRUD actions, however.
 
 If you have discovered endpoints not listed here, please open a PR or submit an issue.
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/amattu2/go-whistle-wrapper)](https://goreportcard.com/report/github.com/amattu2/go-whistle-wrapper)
+
 # Usage
 
 ## ThunderClient / Postman
@@ -312,18 +314,20 @@ REST api endpoints.
 </details>
 
 <details>
-  <summary>DeviceActivation(deviceId string)</summary>
+  <summary>DeviceActivationCheck(deviceId string)</summary>
 
-  Provides information about the specified device activation status
+  Returns HTTP 204 if the device Id is valid, but not registered
+
+  Returns HTTP 422 if the device is registered
+
+  Returns HTTP 404 if the id is invalid
 
   ```go
   // ...
-  q := client.DeviceActivation("serial_num")
+  q := client.DeviceActivationCheck("serial_num")
 
-  q.StatusCode // "200"
+  q.StatusCode // "204"
   q.Error // nil
-
-  fmt.Println(q.Response) // TBD
   // ...
   ```
 

@@ -280,12 +280,12 @@
     "_id": "e42f790f-beb7-4fc5-af56-382210eb2c56",
     "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
     "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
-    "name": "Activation",
+    "name": "Activation Status",
     "url": "https://app.whistle.com/api/devices/{deviceId}/activation",
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-02-04T01:24:03.793Z",
-    "modified": "2023-02-07T13:22:15.685Z",
+    "modified": "2023-02-09T21:44:03.366Z",
     "headers": [
       {
         "name": "Accept",
@@ -304,6 +304,7 @@
       "bearer": "{{bearer}}"
     },
     "tests": [],
+    "docs": "HTTP 204 - Indicates the device is not registered yet.",
     "preReq": {
       "runRequests": [
         {
@@ -1106,9 +1107,9 @@
     "name": "Pet",
     "url": "https://app.whistle.com/api/pets/{petId}",
     "method": "GET",
-    "sortNum": 20058.7,
+    "sortNum": 20048.9,
     "created": "2023-02-04T01:34:39.265Z",
-    "modified": "2023-02-06T21:56:03.085Z",
+    "modified": "2023-02-09T21:52:00.331Z",
     "headers": [
       {
         "name": "Accept",
@@ -2045,6 +2046,136 @@
       }
     ],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "b13e84bf-083d-4df2-a35c-89eeb599eee4",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "c6827c12-1407-448c-9774-7406b3aa712e",
+    "name": "Activation Start",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/activation/start",
+    "method": "POST",
+    "sortNum": 25000,
+    "created": "2023-02-09T21:36:21.845Z",
+    "modified": "2023-02-09T21:36:58.396Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "{{deviceId}}",
+        "isPath": true
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "201"
+      }
+    ],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "36625335-9542-4e39-ae31-632d4c38e235",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "cc990b6f-d966-416c-8c1d-2fd5b77decb7",
+    "name": "Pet Create",
+    "url": "https://app.whistle.com/api/pets",
+    "method": "POST",
+    "sortNum": 20019.5,
+    "created": "2023-02-09T21:45:06.696Z",
+    "modified": "2023-02-09T22:00:05.388Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json "
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"device\": {\n    \"model_id\": \"W05\",\n    \"serial_number\": \"{{deviceId}}\"\n  },\n  \"profile_photo\": null,\n  \"gender\": \"m\",\n  \"name\": \"Barker Sarker\",\n  \"partner_record\": null,\n  \"partner_service_status\": null,\n  \"profile_photo_url_sizes\": null,\n  \"realtime_channel\": null,  \n  \"profile\": {\n    \"breed\": {\n      \"id\": 18\n    },\n    \"date_of_birth\": \"2022-02-09\",\n    \"age_in_months\": 12,\n    \"age_in_years\": 1,\n    \"time_zone_name\": \"America/Chicago\",\n    \"weight\": 32.00,\n    \"weight_type\": \"pounds\",\n    \"species\": \"dog\",\n    \"overdue_task_occurrence_count\": 0,\n    \"is_fixed\": true,\n    \"body_condition_score\": null,\n    \"pet_food\": null\n  },\n  \"id\": 0,\n  \"subscription_status\": []\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
+  },
+  {
+    "_id": "9e56accf-3525-46fd-8038-0a69e0b35d9d",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "eb396f06-949d-47fe-b50b-0dfdf201b0f5",
+    "name": "Places Create",
+    "url": "https://app.whistle.com/api/places",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-02-09T22:02:38.499Z",
+    "modified": "2023-02-09T22:13:48.262Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": 464347,\n  \"name\": \"Test Place\",\n  \"address\": \"123 Main St, Anytown, USA\",\n  \"latitude\": \"37.123456\",\n  \"longitude\": \"-122.123456\",\n  \"radius_meters\": 100,\n  \"shape\": \"square\",\n  \"created_by_user\": true,\n  \"pet_ids\": [\n    \"{{petId}}\"\n  ],\n  \"outline\": [\n    {\n        \"latitude\": \"37.123456\",\n        \"longitude\": \"-122.123456\"\n    },\n    {\n        \"latitude\": \"37.123457\",\n        \"longitude\": \"-122.123455\"\n    },\n    {\n        \"latitude\": \"37.123458\",\n        \"longitude\": \"-122.123454\"\n    },\n    {\n        \"latitude\": \"37.123459\",\n        \"longitude\": \"-122.123453\"\n    }    \n  ],\n  \"wifi_network\": null\n}",
+      "form": []
+    },
     "auth": {
       "type": "bearer",
       "bearer": "{{bearer}}"

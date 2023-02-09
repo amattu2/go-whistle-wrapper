@@ -13,7 +13,9 @@ on:
       - "**.go"
 
 env:
-  WHISTLE_BEARER: ${{ secrets.WHISTLE_BEARER }}
+  BEARER: ${{ secrets.WHISTLE_BEARER }}
+  DEVICE_ID: ${{ secrets.WHISTLE_DEVICE_ID }}
+  PET_ID: ${{ secrets.WHISTLE_PET_ID }}
 
 jobs:
   test:
@@ -40,4 +42,4 @@ jobs:
 
       # Run tests
       - run: go version
-      - run: WHISTLE_BEARER=$WHISTLE_BEARER go test -v ./...
+      - run: WHISTLE_BEARER=$BEARER WHISTLE_DEVICE_ID=$DEVICEID WHISTLE_PET_ID=$PET_ID go test -v ./...

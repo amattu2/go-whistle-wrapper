@@ -48,7 +48,16 @@ func TestDevice(t *testing.T) {
 }
 
 func TestDeviceActivation(t *testing.T) {
-	t.Skip("Cannot test due to dependence on changing states")
+	t.Parallel()
+
+	// Create new client
+	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+
+	// Get data
+	resp := c.DeviceActivationCheck(utils.GetEnv("WHISTLE_DEVICE_ID", ""))
+
+	assert.Equal(t, http.StatusUnprocessableEntity, resp.StatusCode)
+	assert.Equal(t, resp.Error, nil)
 }
 
 func TestDevicePlans(t *testing.T) {

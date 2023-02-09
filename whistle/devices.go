@@ -140,10 +140,10 @@ func (c Client) Device(deviceId string) *HttpResponse[DeviceResponse] {
 	}
 }
 
-// DeviceActivation returns detailed information about device activation status by deviceId
-func (c Client) DeviceActivation(deviceId string) *HttpResponse[DeviceActivationResponse] {
+// DeviceActivationCheck returns HTTP 204 if the device is not activated, ortherwise HTTP 422
+func (c Client) DeviceActivationCheck(deviceId string) *HttpResponse[DeviceActivationResponse] {
 	resp, err := c.get(fmt.Sprintf("api/devices/%s/activation", deviceId), nil, true)
-	if err != nil || resp.StatusCode != http.StatusOK {
+	if err != nil || (resp.StatusCode != http.StatusNoContent && resp.StatusCode != http.StatusUnprocessableEntity) {
 		return &HttpResponse[DeviceActivationResponse]{
 			StatusCode: resp.StatusCode,
 			Error:      err,
