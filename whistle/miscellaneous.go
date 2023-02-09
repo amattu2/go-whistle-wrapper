@@ -51,9 +51,33 @@ type AdventureCategoriesResponse struct {
 type PetFood struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
+
+	// Not present in all responses
+	FoodPortion string `json:"food_portion"`
+	Unit        string `json:"unit"`
 }
 
 type Notification struct {
+	Error string             `json:"error"`
+	Items []NotificationItem `json:"items"`
+}
+
+type NotificationItem struct {
+	// Not present in all responses
+	Actor NotificationItemActor `json:"actor"`
+
+	Message          string                `json:"message"`
+	Target           NotificationItemActor `json:"target"`
+	CreatedAt        string                `json:"created_at"`
+	Unread           bool                  `json:"unread"`
+	NotificationType string                `json:"notification_type"`
+}
+
+type NotificationItemActor struct {
+	Type string `json:"type"`
+
+	// An abbreviated version of the pet
+	Value Pet `json:"value"`
 }
 
 type Place struct {

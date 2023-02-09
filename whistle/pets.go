@@ -245,29 +245,47 @@ type HealthTrend struct {
 }
 
 type PetHealthGraphsResponse struct {
-	Errors           []Error             `json:"errors"`
-	PetId            int                 `json:"pet_id"`
-	StartDate        string              `json:"start_date"`
-	NumOfDays        int                 `json:"num_of_days"`
-	Score            any                 `json:"score"` // TBD describe this type
-	Unit             string              `json:"unit"`
-	Status           string              `json:"status"`
-	Data             []any               `json:"data"` // TBD describe this type
-	StatusThresholds []map[string]string `json:"status_thresholds"`
+	Errors           []Error                    `json:"errors"`
+	PetId            int                        `json:"pet_id"`
+	StartDate        string                     `json:"start_date"`
+	NumOfDays        int                        `json:"num_of_days"`
+	Score            int                        `json:"score"`
+	Unit             string                     `json:"unit"`
+	Status           string                     `json:"status"`
+	Data             []PetHealthDataObservation `json:"data"`
+	StatusThresholds []map[string]string        `json:"status_thresholds"`
+}
+
+type PetHealthDataObservation struct {
+	StartDate     string              `json:"start_date"`
+	StartDatetime string              `json:"start_datetime"`
+	EndDate       string              `json:"end_date"`
+	Timezone      string              `json:"timezone"`
+	Duration      int                 `json:"duration"`
+	Disruptions   []map[string]string `json:"disruptions"`
 }
 
 type PetNutritionPortionsResponse struct {
-	Errors               []Error `json:"errors"`
-	PetFoodPortions      []any   `json:"pet_food_portions"` // TBD describe this type
-	SuggestedCalories    float64 `json:"suggested_calories"`
-	AverageCalories      float64 `json:"average_calories"`
-	AverageMinutesActive float64 `json:"average_minutes_active"`
-	Treats               []any   `json:"treats"` // TBD describe this type
+	Errors               []Error          `json:"errors"`
+	PetFoodPortions      []PetFoodPortion `json:"pet_food_portions"`
+	SuggestedCalories    float64          `json:"suggested_calories"`
+	AverageCalories      float64          `json:"average_calories"`
+	AverageMinutesActive float64          `json:"average_minutes_active"`
+	Treats               []PetFood        `json:"treats"`
 }
 
 type PetFoodPortionsResponse struct {
-	Errors          []Error `json:"errors"`
-	PetFoodPortions []any   `json:"pet_food_portions"` // TBD describe this type
+	Errors          []Error          `json:"errors"`
+	PetFoodPortions []PetFoodPortion `json:"pet_food_portions"`
+}
+
+type PetFoodPortion struct {
+	ID          int     `json:"id"`
+	PetFoodId   int     `json:"pet_food_id"`
+	Percentage  float64 `json:"percentage"`
+	Name        string  `json:"name"`
+	Unit        string  `json:"unit"`
+	FoodPortion string  `json:"food_portion"`
 }
 
 type PetTaskResponse struct {

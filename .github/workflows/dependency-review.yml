@@ -1,11 +1,6 @@
 name: Dependency Review
 
 on:
-  push:
-    branches: ["master"]
-    paths:
-      - "**.mod"
-      - "**.sum"
   pull_request:
     branches: ["master"]
     paths:
