@@ -167,7 +167,7 @@ type PetStatistics struct {
 	DistanceUnit         string  `json:"distance_units"`
 	CurrentStreak        int     `json:"current_streak"`
 	LongestStreak        int     `json:"longest_streak"`
-	MostActiveDay        any     `json:"most_active_day"` // Todo: Validate this type
+	MostActiveDay        int     `json:"most_active_day"`
 }
 
 type PetDailiesResponse struct {

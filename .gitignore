@@ -2,6 +2,7 @@
 __pycache__/
 node_modules/
 vendor/
+App/
 
 # Specific Files
 thunderEnvironment.json

@@ -2191,5 +2191,53 @@
         }
       ]
     }
+  },
+  {
+    "_id": "a751ba19-ec08-4c1f-b9b4-6f5bc1cc7cbe",
+    "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+    "containerId": "429f4497-84d6-4084-af91-21b93dd9df14",
+    "name": "Flashlight",
+    "url": "https://app.whistle.com/api/devices/{deviceId}/flashlight_status",
+    "method": "PUT",
+    "sortNum": 80000,
+    "created": "2023-02-13T20:33:35.873Z",
+    "modified": "2023-02-13T20:49:29.316Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.whistle.com.v4+json"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "deviceId",
+        "value": "{{deviceId}}",
+        "isPath": true
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"flashlight_status\": \"0\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{bearer}}"
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "beabdbf3-b62c-4c9f-bd63-83c258297c98",
+          "colId": "fc5972ba-212e-4c4b-9683-9cc3a5f36a1b",
+          "triggerCondition": "run-var-empty",
+          "triggerValue": "{{bearer}}"
+        }
+      ]
+    }
   }
 ]
