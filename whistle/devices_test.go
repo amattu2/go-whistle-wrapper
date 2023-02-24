@@ -26,15 +26,11 @@ import (
 	"testing"
 
 	"github.com/amattu2/go-whistle-wrapper/utils"
-	"github.com/amattu2/go-whistle-wrapper/whistle"
 	"github.com/go-playground/assert/v2"
 )
 
 func TestDevice(t *testing.T) {
 	t.Parallel()
-
-	// Create new client
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	// Get data
 	resp := c.Device(utils.GetEnv("WHISTLE_DEVICE_ID", ""))
@@ -49,9 +45,6 @@ func TestDevice(t *testing.T) {
 
 func TestDeviceActivation(t *testing.T) {
 	t.Parallel()
-
-	// Create new client
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	// Get data
 	resp := c.DeviceActivationCheck(utils.GetEnv("WHISTLE_DEVICE_ID", ""))

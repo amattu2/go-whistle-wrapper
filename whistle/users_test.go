@@ -25,15 +25,11 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/amattu2/go-whistle-wrapper/utils"
-	"github.com/amattu2/go-whistle-wrapper/whistle"
 	"github.com/go-playground/assert/v2"
 )
 
 func TestUsers(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	resp := c.Users()
 
@@ -45,8 +41,6 @@ func TestUsers(t *testing.T) {
 
 func TestMe(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	resp := c.Me()
 
@@ -60,8 +54,6 @@ func TestMe(t *testing.T) {
 func TestCheckEmailExisting(t *testing.T) {
 	t.Parallel()
 
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
-
 	resp := c.CheckEmail("admin@whistle.com")
 
 	assert.Equal(t, http.StatusNoContent, resp.StatusCode) // Email exists
@@ -71,8 +63,6 @@ func TestCheckEmailExisting(t *testing.T) {
 
 func TestCheckEmailNonExisting(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	resp := c.CheckEmail("thisuserwillneverexisthopefully19283201@whistle.com")
 
@@ -88,8 +78,6 @@ func TestInvitationCodes(t *testing.T) {
 func TestApplicationState(t *testing.T) {
 	t.Parallel()
 
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
-
 	resp := c.ApplicationState()
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
@@ -103,8 +91,6 @@ func TestApplicationState(t *testing.T) {
 func TestCreditCard(t *testing.T) {
 	t.Parallel()
 
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
-
 	resp := c.CreditCard()
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
@@ -116,8 +102,6 @@ func TestCreditCard(t *testing.T) {
 
 func TestSubscriptions(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	resp := c.Subscriptions()
 

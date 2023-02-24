@@ -177,9 +177,9 @@ func (c *Client) addDefaultHeaders(request *http.Request, addAuth bool) {
 	// Add authorization
 	if addAuth {
 		if c.token != "" {
-			request.Header.Set("X-Whistle-AuthToken", c.getToken())
+			request.Header.Set("X-Whistle-AuthToken", c.GetToken())
 		} else {
-			request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.getBearer()))
+			request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.GetBearer()))
 		}
 	}
 }
@@ -227,10 +227,10 @@ func (c *Client) post(path string, headers map[string]string, body map[string]st
 	return client.Do(request)
 }
 
-// getToken returns the API token if it exists, otherwise it will login and return the token
+// GetToken returns the API token if it exists, otherwise it will login and return the token
 //
-// Deprecated: Use getBearer() instead
-func (c *Client) getToken() string {
+// Deprecated: Use GetBearer() instead
+func (c *Client) GetToken() string {
 	// If token is empty, login and get token
 	if c.token == "" && c.email != "" && c.password != "" {
 		data := map[string]string{
@@ -264,8 +264,8 @@ func (c *Client) getToken() string {
 	return c.token
 }
 
-// getBearer returns the HTTP bearer if it exists, otherwise it will login and return the bearer
-func (c *Client) getBearer() string {
+// GetBearer returns the HTTP bearer if it exists, otherwise it will login and return the bearer
+func (c *Client) GetBearer() string {
 	// If bearer is empty, login and get bearer
 	if c.bearer == "" && c.email != "" && (c.password != "" || c.refreshToken != "") {
 		data := map[string]string{

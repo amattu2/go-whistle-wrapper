@@ -26,14 +26,11 @@ import (
 	"testing"
 
 	"github.com/amattu2/go-whistle-wrapper/utils"
-	"github.com/amattu2/go-whistle-wrapper/whistle"
 	"github.com/go-playground/assert/v2"
 )
 
 func TestPets(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	r := c.Pets()
 
@@ -51,8 +48,6 @@ func TestPets(t *testing.T) {
 
 func TestTransfers(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	r := c.PetTransfers()
 
@@ -72,8 +67,6 @@ func TestTransfers(t *testing.T) {
 func TestPet(t *testing.T) {
 	t.Parallel()
 
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
-
 	r := c.Pet(utils.GetEnv("WHISTLE_PET_ID", ""))
 
 	assert.Equal(t, http.StatusOK, r.StatusCode)
@@ -83,8 +76,6 @@ func TestPet(t *testing.T) {
 
 func TestPetOwners(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	r := c.PetOwners(utils.GetEnv("WHISTLE_PET_ID", ""))
 
@@ -102,8 +93,6 @@ func TestPetOwners(t *testing.T) {
 
 func TestPetWhereabouts(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	r := c.PetWhereabouts(utils.GetEnv("WHISTLE_PET_ID", ""), "2022-12-01", "2023-03-03")
 
@@ -125,8 +114,6 @@ func TestPetWhereabouts(t *testing.T) {
 func TestPetLocationsRecent(t *testing.T) {
 	t.Parallel()
 
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
-
 	r := c.PetLocationsRecent(utils.GetEnv("WHISTLE_PET_ID", ""))
 
 	assert.Equal(t, http.StatusOK, r.StatusCode)
@@ -142,8 +129,6 @@ func TestPetLocationsRecent(t *testing.T) {
 
 func TestPetAchievements(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	r := c.PetAchievements(utils.GetEnv("WHISTLE_PET_ID", ""))
 
@@ -176,8 +161,6 @@ func TestPetDailyItems(t *testing.T) {
 
 func TestPetHealthTrends(t *testing.T) {
 	t.Parallel()
-
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	r := c.PetHealthTrends(utils.GetEnv("WHISTLE_PET_ID", ""))
 

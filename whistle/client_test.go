@@ -24,9 +24,23 @@ package whistle_test
 import (
 	"testing"
 
+	"github.com/amattu2/go-whistle-wrapper/utils"
 	"github.com/amattu2/go-whistle-wrapper/whistle"
 	"github.com/go-playground/assert/v2"
 )
+
+var c *whistle.Client
+
+func init() {
+	if utils.GetEnv("WHISTLE_BEARER", "") == "" {
+		c = whistle.Initialize(
+			utils.GetEnv("WHISTLE_EMAIL", ""),
+			utils.GetEnv("WHISTLE_PASSWORD", ""),
+		)
+	} else {
+		c = whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
+	}
+}
 
 func TestInvalidInit(t *testing.T) {
 	t.Parallel()

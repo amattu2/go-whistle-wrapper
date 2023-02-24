@@ -10,6 +10,8 @@ standard CRUD actions, however.
 If you have discovered endpoints not listed here, please open a PR or submit an issue.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/amattu2/go-whistle-wrapper)](https://goreportcard.com/report/github.com/amattu2/go-whistle-wrapper)
+[![CodeQL Analysis](https://github.com/amattu2/go-whistle-wrapper/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/amattu2/go-whistle-wrapper/actions/workflows/codeql-analysis.yml)
+[![Go Tests](https://github.com/amattu2/go-whistle-wrapper/actions/workflows/go-tests.yml/badge.svg)](https://github.com/amattu2/go-whistle-wrapper/actions/workflows/go-tests.yml)
 
 # Usage
 

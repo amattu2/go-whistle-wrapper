@@ -25,16 +25,11 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/amattu2/go-whistle-wrapper/utils"
-	"github.com/amattu2/go-whistle-wrapper/whistle"
 	"github.com/go-playground/assert/v2"
 )
 
 func TestDogBreeds(t *testing.T) {
 	t.Parallel()
-
-	// Create new client
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	// Get data
 	resp := c.Breeds("dogs")
@@ -48,9 +43,6 @@ func TestDogBreeds(t *testing.T) {
 func TestCatBreeds(t *testing.T) {
 	t.Parallel()
 
-	// Create new client
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
-
 	// Get data
 	resp := c.Breeds("cats")
 
@@ -62,9 +54,6 @@ func TestCatBreeds(t *testing.T) {
 
 func TestBreedsInvalid(t *testing.T) {
 	t.Parallel()
-
-	// Create new client
-	c := whistle.InitializeBearer(utils.GetEnv("WHISTLE_BEARER", ""))
 
 	// Get data
 	resp := c.Breeds("rhinos")
