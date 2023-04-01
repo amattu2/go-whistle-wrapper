@@ -1,8 +1,8 @@
 name: Go Tests
 
 on:
-  schedule:
-    - cron: "0 0 1 * *"
+  #schedule:
+  #  - cron: "0 0 1 * *"
   push:
     branches: ["master"]
     paths:
